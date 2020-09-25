@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
@@ -26,13 +26,13 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [scrollbarH]="true"
         [rows]="rows"
       >
-        <ngx-datatable-column name="Name" [width]="300" [frozenLeft]="true"> </ngx-datatable-column>
-        <ngx-datatable-column name="Gender"> </ngx-datatable-column>
-        <ngx-datatable-column name="Age"> </ngx-datatable-column>
-        <ngx-datatable-column name="City" [width]="150" prop="address.city"> </ngx-datatable-column>
-        <ngx-datatable-column name="State" [width]="300" prop="address.state" [frozenRight]="true">
-        </ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Name" [width]="300" [frozenLeft]="true"> </ngn-datatable-column>
+        <ngn-datatable-column name="Gender"> </ngn-datatable-column>
+        <ngn-datatable-column name="Age"> </ngn-datatable-column>
+        <ngn-datatable-column name="City" [width]="150" prop="address.city"> </ngn-datatable-column>
+        <ngn-datatable-column name="State" [width]="300" prop="address.state" [frozenRight]="true">
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

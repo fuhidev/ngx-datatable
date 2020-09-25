@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columnMode]="ColumnMode.force"
@@ -24,29 +24,29 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [footerHeight]="50"
         rowHeight="auto"
       >
-        <ngx-datatable-column name="Name">
-          <ng-template let-column="column" ngx-datatable-header-template> Holla! {{ column.name }} </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Name">
+          <ng-template let-column="column" ngn-datatable-header-template> Holla! {{ column.name }} </ng-template>
+          <ng-template let-value="value" ngn-datatable-cell-template>
             Hi: <strong>{{ value }}</strong>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gender">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Gender">
+          <ng-template let-column="column" let-sort="sortFn" ngn-datatable-header-template>
             <span (click)="sort()">{{ column.name }}</span>
           </ng-template>
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <ng-template let-row="row" let-value="value" ngn-datatable-cell-template>
             My name is: <i [innerHTML]="row['name']"></i> and <i>{{ value }}</i>
             <div>{{ joke }}</div>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Age">
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Age">
+          <ng-template let-value="value" ngn-datatable-cell-template>
             <div style="border:solid 1px #ddd;margin:5px;padding:3px">
               <div style="background:#999;height:10px" [style.width]="value + '%'"></div>
             </div>
           </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

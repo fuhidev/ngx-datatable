@@ -28,7 +28,7 @@ interface PageInfo {
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columns]="[
@@ -48,7 +48,7 @@ interface PageInfo {
         [offset]="pageNumber"
         (page)="setPage($event)"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

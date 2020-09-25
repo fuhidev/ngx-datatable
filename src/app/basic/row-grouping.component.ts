@@ -17,7 +17,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         #myTable
         class="material expandable"
         [rows]="rows"
@@ -31,8 +31,8 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [groupExpansionDefault]="true"
       >
         <!-- Group Header Template -->
-        <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
-          <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+        <ngn-datatable-group-header [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
+          <ng-template let-group="group" let-expanded="expanded" ngn-datatable-group-header-template>
             <div style="padding-left:5px;">
               <a
                 href="#"
@@ -45,12 +45,12 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               </a>
             </div>
           </ng-template>
-        </ngx-datatable-group-header>
+        </ngn-datatable-group-header>
 
         <!-- Row Column Template -->
-        <ngx-datatable-column name="Exp. Pay." prop="" editable="true" frozenLeft="True">
+        <ngn-datatable-column name="Exp. Pay." prop="" editable="true" frozenLeft="True">
           <ng-template
-            ngx-datatable-cell-template
+            ngn-datatable-cell-template
             let-rowIndex="rowIndex"
             let-value="value"
             let-row="row"
@@ -90,15 +90,15 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               />
             </label>
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Source" prop="source" editable="false" frozenLeft="True"></ngx-datatable-column>
-        <ngx-datatable-column name="Name" prop="name" editable="true"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender" prop="gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Age" prop="age"></ngx-datatable-column>
-        <ngx-datatable-column name="Comment" prop="comment">
+        <ngn-datatable-column name="Source" prop="source" editable="false" frozenLeft="True"></ngn-datatable-column>
+        <ngn-datatable-column name="Name" prop="name" editable="true"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender" prop="gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Age" prop="age"></ngn-datatable-column>
+        <ngn-datatable-column name="Comment" prop="comment">
           <ng-template
-            ngx-datatable-cell-template
+            ngn-datatable-cell-template
             let-rowIndex="rowIndex"
             let-value="value"
             let-row="row"
@@ -113,8 +113,8 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               [value]="value"
             />
           </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

@@ -8,10 +8,10 @@ import { DatatableGroupHeaderTemplateDirective } from './body-group-header-templ
 @Component({
   selector: 'test-fixture-component',
   template: `
-    <ngx-datatable-group-header id="t1"></ngx-datatable-group-header>
-    <ngx-datatable-group-header id="t2">
-      <ng-template ngx-datatable-group-header-template></ng-template>
-    </ngx-datatable-group-header>
+    <ngn-datatable-group-header id="t1"></ngn-datatable-group-header>
+    <ngn-datatable-group-header id="t2">
+      <ng-template ngn-datatable-group-header-template></ng-template>
+    </ngn-datatable-group-header>
   `
 })
 class TestFixtureComponent {}

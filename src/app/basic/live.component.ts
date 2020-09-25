@@ -22,7 +22,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           <a href="javascript:void(0)" (click)="remove()">Remove</a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         #mydatatable
         class="material"
         [headerHeight]="50"
@@ -33,10 +33,10 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [trackByProp]="'updated'"
         [rows]="rows"
       >
-        <ngx-datatable-column name="Name"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Company"></ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Name"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Company"></ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

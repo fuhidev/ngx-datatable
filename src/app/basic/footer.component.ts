@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columns]="columns"
@@ -25,9 +25,9 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [headerHeight]="50"
         rowHeight="auto"
       >
-        <ngx-datatable-footer *ngIf="true">
+        <ngn-datatable-footer *ngIf="true">
           <ng-template
-            ngx-datatable-footer-template
+            ngn-datatable-footer-template
             let-rowCount="rowCount"
             let-pageSize="pageSize"
             let-selectedCount="selectedCount"
@@ -40,8 +40,8 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               <div>Rows: {{ rowCount }} | Size: {{ pageSize }} | Current: {{ curPage }} | Offset: {{ offset }}</div>
             </div>
           </ng-template>
-        </ngx-datatable-footer>
-      </ngx-datatable>
+        </ngn-datatable-footer>
+      </ngn-datatable>
     </div>
   `
 })

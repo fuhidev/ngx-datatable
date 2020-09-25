@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columnMode]="ColumnMode.standard"
@@ -24,22 +24,22 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [footerHeight]="50"
         rowHeight="auto"
       >
-        <ngx-datatable-column name="Name" [width]="300">
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Name" [width]="300">
+          <ng-template let-value="value" ngn-datatable-cell-template>
             {{ value }}
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gender" [width]="300">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Gender" [width]="300">
+          <ng-template let-row="row" let-value="value" ngn-datatable-cell-template>
             {{ value }}
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Age" [width]="300">
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Age" [width]="300">
+          <ng-template let-value="value" ngn-datatable-cell-template>
             {{ value }}
           </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

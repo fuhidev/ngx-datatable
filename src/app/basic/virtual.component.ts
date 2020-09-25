@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columnMode]="ColumnMode.force"
@@ -26,18 +26,18 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [scrollbarV]="true"
         (page)="onPage($event)"
       >
-        <ngx-datatable-column name="Name" [width]="300">
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Name" [width]="300">
+          <ng-template let-value="value" ngn-datatable-cell-template>
             <strong>{{ value }}</strong>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gender" [width]="300">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Gender" [width]="300">
+          <ng-template let-row="row" let-value="value" ngn-datatable-cell-template>
             <i [innerHTML]="row['name']"></i> and <i>{{ value }}</i>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Row Height" prop="height" [width]="80"> </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Row Height" prop="height" [width]="80"> </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

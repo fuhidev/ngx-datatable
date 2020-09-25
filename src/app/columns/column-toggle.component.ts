@@ -17,7 +17,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         </small>
       </h3>
       <div style="float:left;width:75%">
-        <ngx-datatable
+        <ngn-datatable
           class="material"
           [rows]="rows"
           [columnMode]="ColumnMode.force"
@@ -25,8 +25,8 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           [footerHeight]="50"
           rowHeight="auto"
         >
-          <ngx-datatable-column *ngFor="let col of columns" [name]="col.name"> </ngx-datatable-column>
-        </ngx-datatable>
+          <ngn-datatable-column *ngFor="let col of columns" [name]="col.name"> </ngn-datatable-column>
+        </ngn-datatable>
       </div>
       <div class="selected-column">
         <h4>Available Columns</h4>

@@ -15,7 +15,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [summaryRow]="enableSummary"
         [summaryPosition]="summaryPosition"
@@ -25,10 +25,10 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         rowHeight="auto"
         [rows]="rows"
       >
-        <ngx-datatable-column prop="name" [summaryTemplate]="nameSummaryCell"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender" [summaryFunc]="summaryForGender"></ngx-datatable-column>
-        <ngx-datatable-column prop="age" [summaryFunc]="avgAge"></ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column prop="name" [summaryTemplate]="nameSummaryCell"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender" [summaryFunc]="summaryForGender"></ngn-datatable-column>
+        <ngn-datatable-column prop="age" [summaryFunc]="avgAge"></ngn-datatable-column>
+      </ngn-datatable>
       <ng-template #nameSummaryCell>
         <div class="name-container">
           <div class="chip" *ngFor="let name of getNames()">

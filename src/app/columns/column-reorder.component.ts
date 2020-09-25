@@ -32,7 +32,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [loadingIndicator]="loadingIndicator"
@@ -45,7 +45,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [swapColumns]="swapColumns"
         [targetMarkerTemplate]="targetMarkerTemplate"
       >
-      </ngx-datatable>
+      </ngn-datatable>
       <ng-template #targetMarkerTemplate let-class="class">
         <div [ngClass]="class">
           <div class="icon datatable-icon-down"></div>

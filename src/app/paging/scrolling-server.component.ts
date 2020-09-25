@@ -40,7 +40,7 @@ export class MockServerResultsService {
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material server-scrolling-demo"
         [rows]="rows"
         [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]"
@@ -50,7 +50,7 @@ export class MockServerResultsService {
         [loadingIndicator]="isLoading"
         [scrollbarV]="true"
         (scroll)="onScroll($event.offsetY)"
-      ></ngx-datatable>
+      ></ngn-datatable>
     </div>
   `,
   styleUrls: ['./scrolling-server.component.css']

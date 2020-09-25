@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material fullscreen"
         style="top: 52px"
         [columnMode]="ColumnMode.force"
@@ -27,13 +27,13 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [scrollbarH]="true"
         [rows]="rows"
       >
-        <ngx-datatable-column name="Id" [width]="80"></ngx-datatable-column>
-        <ngx-datatable-column name="Name" [width]="300"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Age"></ngx-datatable-column>
-        <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
-        <ngx-datatable-column name="State" [width]="300" prop="address.state"></ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Id" [width]="80"></ngn-datatable-column>
+        <ngn-datatable-column name="Name" [width]="300"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Age"></ngn-datatable-column>
+        <ngn-datatable-column name="City" [width]="300" prop="address.city"></ngn-datatable-column>
+        <ngn-datatable-column name="State" [width]="300" prop="address.state"></ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

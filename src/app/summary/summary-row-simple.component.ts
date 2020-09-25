@@ -33,7 +33,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </select>
         </div>
       </div>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [summaryRow]="enableSummary"
         [summaryPosition]="summaryPosition"
@@ -44,7 +44,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [summaryHeight]="55"
         [rows]="rows"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `,
   styleUrls: ['./summary-row-simple.component.scss']

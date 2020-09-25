@@ -6,8 +6,8 @@
   To modify table colors, add the following lines to the scss file of your application
   (this example modifies the color of the selected row - selectionType = single, multi or multiClick):
 
-  $ngx-datatable-selected-active-background: yellow;
-  $ngx-datatable-selected-active-background-hover: rgba(yellow, 0.2);
+  $ngn-datatable-selected-active-background: yellow;
+  $ngn-datatable-selected-active-background-hover: rgba(yellow, 0.2);
 
   @import '~ng-nest-datatable/index.css';
   @import '~ng-nest-datatable/themes/material.scss';
@@ -17,27 +17,27 @@ That's all.
 */
 
 // common datatable colors
-$ngx-datatable-background: #fff !default;
-$ngx-datatable-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+$ngn-datatable-background: #fff !default;
+$ngn-datatable-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12) !default;
-$ngx-datatable-row-odd-background: #eee !default;
+$ngn-datatable-row-odd-background: #eee !default;
 
 // default row and cell background colors
-$ngx-datatable-default-background: #fff !default;
-$ngx-datatable-default-background-hover: #eee !default;
-$ngx-datatable-default-background-focus: #ddd !default;
+$ngn-datatable-default-background: #fff !default;
+$ngn-datatable-default-background-hover: #eee !default;
+$ngn-datatable-default-background-focus: #ddd !default;
 
 // default background colors for cell selection style
-$ngx-datatable-cellselection-background-hover: #eee !default;
-$ngx-datatable-cellselection-background-focus: #ddd !default;
+$ngn-datatable-cellselection-background-hover: #eee !default;
+$ngn-datatable-cellselection-background-focus: #ddd !default;
 
 // background and text colors for selected cell / row
-$ngx-datatable-selected-active-background: #304ffe !default;
-$ngx-datatable-selected-active-color: #fff !default;
-$ngx-datatable-selected-active-background-hover: #193ae4 !default;
-$ngx-datatable-selected-active-color-hover: #fff !default;
-$ngx-datatable-selected-active-background-focus: #2041ef !default;
-$ngx-datatable-selected-active-color-focus: #fff !default;
+$ngn-datatable-selected-active-background: #304ffe !default;
+$ngn-datatable-selected-active-color: #fff !default;
+$ngn-datatable-selected-active-background-hover: #193ae4 !default;
+$ngn-datatable-selected-active-color-hover: #fff !default;
+$ngn-datatable-selected-active-background-focus: #2041ef !default;
+$ngn-datatable-selected-active-color-focus: #fff !default;
 
 // colors for header elements
 $datatable-header-cell-background: #fff !default;
@@ -66,13 +66,13 @@ $datatable-pager-active-background: rgba(158, 158, 158, 0.2) !default;
 $datatable-summary-row-background: #ddd !default;
 $datatable-summary-row-background-hover: #ddd !default;
 
-.ngx-datatable.material {
-  background: $ngx-datatable-background;
-  box-shadow: $ngx-datatable-box-shadow;
+.ngn-datatable.material {
+  background: $ngn-datatable-background;
+  box-shadow: $ngn-datatable-box-shadow;
 
   &.striped {
     .datatable-row-odd {
-      background: $ngx-datatable-row-odd-background;
+      background: $ngn-datatable-row-odd-background;
     }
   }
 
@@ -82,20 +82,20 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-body-row {
       &.active,
       &.active .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background;
-        color: $ngx-datatable-selected-active-color;
+        background-color: $ngn-datatable-selected-active-background;
+        color: $ngn-datatable-selected-active-color;
       }
 
       &.active:hover,
       &.active:hover .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-hover;
-        color: $ngx-datatable-selected-active-color-hover;
+        background-color: $ngn-datatable-selected-active-background-hover;
+        color: $ngn-datatable-selected-active-color-hover;
       }
 
       &.active:focus,
       &.active:focus .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-focus;
-        color: $ngx-datatable-selected-active-color-focus;
+        background-color: $ngn-datatable-selected-active-background-focus;
+        color: $ngn-datatable-selected-active-color-focus;
       }
     }
   }
@@ -104,7 +104,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-body-row {
       &:hover,
       &:hover .datatable-row-group {
-        background-color: $ngx-datatable-default-background-hover;
+        background-color: $ngn-datatable-default-background-hover;
         transition-property: background;
         transition-duration: 0.3s;
         transition-timing-function: linear;
@@ -112,7 +112,7 @@ $datatable-summary-row-background-hover: #ddd !default;
 
       &:focus,
       &:focus .datatable-row-group {
-        background-color: $ngx-datatable-default-background-focus;
+        background-color: $ngn-datatable-default-background-focus;
       }
     }
   }
@@ -121,7 +121,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-body-cell {
       &:hover,
       &:hover .datatable-row-group {
-        background-color: $ngx-datatable-cellselection-background-hover;
+        background-color: $ngn-datatable-cellselection-background-hover;
         transition-property: background;
         transition-duration: 0.3s;
         transition-timing-function: linear;
@@ -129,25 +129,25 @@ $datatable-summary-row-background-hover: #ddd !default;
 
       &:focus,
       &:focus .datatable-row-group {
-        background-color: $ngx-datatable-cellselection-background-focus;
+        background-color: $ngn-datatable-cellselection-background-focus;
       }
 
       &.active,
       &.active .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background;
-        color: $ngx-datatable-selected-active-color;
+        background-color: $ngn-datatable-selected-active-background;
+        color: $ngn-datatable-selected-active-color;
       }
 
       &.active:hover,
       &.active:hover .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-hover;
-        color: $ngx-datatable-selected-active-color-hover;
+        background-color: $ngn-datatable-selected-active-background-hover;
+        color: $ngn-datatable-selected-active-color-hover;
       }
 
       &.active:focus,
       &.active:focus .datatable-row-group {
-        background-color: $ngx-datatable-selected-active-background-focus;
-        color: $ngx-datatable-selected-active-color-focus;
+        background-color: $ngn-datatable-selected-active-background-focus;
+        color: $ngn-datatable-selected-active-color-focus;
       }
     }
   }
@@ -176,7 +176,7 @@ $datatable-summary-row-background-hover: #ddd !default;
   .datatable-header,
   .datatable-body {
     .datatable-row-left {
-      background-color: $ngx-datatable-background;
+      background-color: $ngn-datatable-background;
       background-position: 100% 0;
       background-repeat: repeat-y;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQIHWPSkNeSBmJhTQVtbiDNCgASagIIuJX8OgAAAABJRU5ErkJggg==);
@@ -184,7 +184,7 @@ $datatable-summary-row-background-hover: #ddd !default;
 
     .datatable-row-right {
       background-position: 0 0;
-      background-color: $ngx-datatable-background;
+      background-color: $ngn-datatable-background;
       background-repeat: repeat-y;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQI12PQkNdi1VTQ5gbSwkAsDQARLAIGtOSFUAAAAABJRU5ErkJggg==);
     }

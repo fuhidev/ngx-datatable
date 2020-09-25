@@ -26,7 +26,7 @@ import {
 import { DatatableGroupHeaderDirective } from './body/body-group-header.directive';
 
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { INgxDatatableConfig } from '../ngx-datatable.module';
+import { INgxDatatableConfig } from '../ngn-datatable.module';
 import { groupRowsByParents, optionalGetterForProp } from '../utils/tree';
 import { TableColumn } from '../types/table-column.type';
 import { setColumnDefaults, translateTemplates } from '../utils/column-helper';
@@ -47,13 +47,13 @@ import { forceFillColumnWidths, adjustColumnWidths } from '../utils/math';
 import { sortRows } from '../utils/sort';
 
 @Component({
-  selector: 'ngx-datatable',
+  selector: 'ngn-datatable',
   templateUrl: './datatable.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./datatable.component.scss'],
   host: {
-    class: 'ngx-datatable'
+    class: 'ngn-datatable'
   }
 })
 export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {

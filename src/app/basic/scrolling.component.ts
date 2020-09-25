@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         columnMode="force"
@@ -25,12 +25,12 @@ import { Component } from '@angular/core';
         [scrollbarV]="true"
         [scrollbarH]="true"
       >
-        <ngx-datatable-column name="Name" [width]="300"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Age"></ngx-datatable-column>
-        <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
-        <ngx-datatable-column name="State" [width]="300" prop="address.state"></ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Name" [width]="300"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Age"></ngn-datatable-column>
+        <ngn-datatable-column name="City" [width]="300" prop="address.city"></ngn-datatable-column>
+        <ngn-datatable-column name="State" [width]="300" prop="address.state"></ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

@@ -36,7 +36,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         #myTable
         class="material expandable"
         [columnMode]="ColumnMode.force"
@@ -48,23 +48,23 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         (page)="onPage($event)"
       >
         <!-- Row Detail Template -->
-        <ngx-datatable-row-detail [rowHeight]="50" #myDetailRow (toggle)="onDetailToggle($event)">
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <ngn-datatable-row-detail [rowHeight]="50" #myDetailRow (toggle)="onDetailToggle($event)">
+          <ng-template let-row="row" let-expanded="expanded" ngn-datatable-row-detail-template>
             <div style="padding-left:60px; font-size:14px">
               <div>{{ row.gender }}, {{ row.age }}</div>
             </div>
           </ng-template>
-        </ngx-datatable-row-detail>
+        </ngn-datatable-row-detail>
 
         <!-- Column Templates -->
-        <ngx-datatable-column
+        <ngn-datatable-column
           [width]="50"
           [resizeable]="false"
           [sortable]="false"
           [draggable]="false"
           [canAutoResize]="false"
         >
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          <ng-template let-row="row" let-expanded="expanded" ngn-datatable-cell-template>
             <a
               href="#"
               [class.datatable-icon-right]="!expanded"
@@ -75,34 +75,34 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
             >
             </a>
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Name" [flexGrow]="3" [minWidth]="200">
-          <ng-template let-value="value" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Name" [flexGrow]="3" [minWidth]="200">
+          <ng-template let-value="value" ngn-datatable-cell-template>
             {{ value }}
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Gender" [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        <ngn-datatable-column name="Gender" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngn-datatable-header-template>
             <span class="mobile-hidden">{{ column.name }}</span>
           </ng-template>
 
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <ng-template let-row="row" let-value="value" ngn-datatable-cell-template>
             <span class="mobile-hidden">{{ value }}</span>
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Age" [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        <ngn-datatable-column name="Age" [flexGrow]="1">
+          <ng-template let-column="column" let-sort="sortFn" ngn-datatable-header-template>
             <span class="mobile-hidden">{{ column.name }}</span>
           </ng-template>
 
-          <ng-template let-value="value" ngx-datatable-cell-template>
+          <ng-template let-value="value" ngn-datatable-cell-template>
             <span class="mobile-hidden">{{ value }}</span>
           </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
 
     <div style="margin: 50px;">

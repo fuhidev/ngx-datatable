@@ -21,7 +21,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
           <p>This demonstrates a simple single selection table with the 3rd row selected by default.</p>
         </div>
 
-        <ngx-datatable
+        <ngn-datatable
           class="material"
           [rows]="rows"
           [columnMode]="ColumnMode.force"
@@ -35,7 +35,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
           (activate)="onActivate($event)"
           (select)="onSelect($event)"
         >
-        </ngx-datatable>
+        </ngn-datatable>
       </div>
 
       <div class="selected-column">

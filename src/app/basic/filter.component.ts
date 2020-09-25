@@ -23,7 +23,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         placeholder="Type to filter the name column..."
         (keyup)="updateFilter($event)"
       />
-      <ngx-datatable
+      <ngn-datatable
         #table
         class="material"
         [columns]="columns"
@@ -34,7 +34,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [limit]="10"
         [rows]="rows"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

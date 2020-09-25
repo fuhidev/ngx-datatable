@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [loadingIndicator]="loadingIndicator"
@@ -27,7 +27,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         rowHeight="auto"
         [reorderable]="reorderable"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

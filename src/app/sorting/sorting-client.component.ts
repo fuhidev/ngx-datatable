@@ -16,7 +16,7 @@ import { ColumnMode, SortType } from 'projects/ng-nest-datatable/src/public-api'
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columns]="columns"
@@ -27,7 +27,7 @@ import { ColumnMode, SortType } from 'projects/ng-nest-datatable/src/public-api'
         [rowHeight]="50"
         [scrollbarV]="true"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

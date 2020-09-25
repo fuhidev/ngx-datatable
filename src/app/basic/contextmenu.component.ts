@@ -18,7 +18,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
       </h3>
       <div class="info">
         <p>
-          <strong>Note:</strong> ngx-datatable does not provide a context menu feature. This demonstrates how you would
+          <strong>Note:</strong> ngn-datatable does not provide a context menu feature. This demonstrates how you would
           access the <code>contextmenu</code> event to display your own custom context menu.
         </p>
         <p *ngIf="rawEvent">
@@ -29,7 +29,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           <strong>Header:</strong> name: {{ contextmenuColumn?.name }} prop: {{ contextmenuColumn?.prop }}
         </p>
       </div>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columns]="columns"
@@ -39,7 +39,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         rowHeight="auto"
         (tableContextmenu)="onTableContextMenu($event)"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

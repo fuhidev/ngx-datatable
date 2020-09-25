@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ColumnChangesService } from '../services/column-changes.service';
-import { NgxDatatableModule } from '../ngx-datatable.module';
+import { NgxDatatableModule } from '../ngn-datatable.module';
 import { DatatableComponent } from './datatable.component';
 import { DataTableBodyRowComponent } from './body/body-row.component';
 import { DataTableBodyCellComponent } from './body/body-cell.component';
@@ -362,7 +362,7 @@ describe('DatatableComponent With Custom Templates', () => {
     expect(textContent({ row: 3, column: 1 })).toContain('20', 'Ascending');
   });
 
-  it('should reflect changes to input bindings of `ngx-datatable-column`', () => {
+  it('should reflect changes to input bindings of `ngn-datatable-column`', () => {
     const initialRows = [
       { id: 5, user: 'Sam', age: 35 },
       { id: 20, user: 'Bob', age: 50 },
@@ -393,7 +393,7 @@ describe('DatatableComponent With Custom Templates', () => {
 });
 
 @Component({
-  template: ` <ngx-datatable [columns]="columns" [rows]="rows" [sorts]="sorts"> </ngx-datatable> `
+  template: ` <ngn-datatable [columns]="columns" [rows]="rows" [sorts]="sorts"> </ngn-datatable> `
 })
 class TestFixtureComponent {
   columns: any[] = [];
@@ -403,24 +403,24 @@ class TestFixtureComponent {
 
 @Component({
   template: `
-    <ngx-datatable [rows]="rows" [sorts]="sorts">
-      <ngx-datatable-column name="Id" prop="id">
-        <ng-template let-column="column" ngx-datatable-header-template>
+    <ngn-datatable [rows]="rows" [sorts]="sorts">
+      <ngn-datatable-column name="Id" prop="id">
+        <ng-template let-column="column" ngn-datatable-header-template>
           {{ column.name }}
         </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
+        <ng-template let-row="row" ngn-datatable-cell-template>
           {{ row.id }}
         </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [prop]="columnTwoProp">
-        <ng-template let-column="column" ngx-datatable-header-template>
+      </ngn-datatable-column>
+      <ngn-datatable-column [prop]="columnTwoProp">
+        <ng-template let-column="column" ngn-datatable-header-template>
           {{ column.name }}
         </ng-template>
-        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
+        <ng-template let-row="row" let-column="column" ngn-datatable-cell-template>
           {{ row[column.prop] }}
         </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
+      </ngn-datatable-column>
+    </ngn-datatable>
   `
 })
 class TestFixtureComponentWithCustomTemplates {
@@ -454,7 +454,7 @@ function sortBy({ column }: { column: number }) {
 
 /**
  * test helper function to return text content of a cell within the
- * body of the ngx-datatable component
+ * body of the ngn-datatable component
  */
 function textContent({ row, column }: { row: number; column: number }) {
   const [rowIndex, columnIndex] = [row - 1, column - 1];

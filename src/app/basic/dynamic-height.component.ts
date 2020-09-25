@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columnMode]="ColumnMode.force"
@@ -25,10 +25,10 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [rowHeight]="getRowHeight"
         [scrollbarV]="true"
       >
-        <ngx-datatable-column name="Name"></ngx-datatable-column>
-        <ngx-datatable-column name="Gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Row Height" prop="height"></ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Name"></ngn-datatable-column>
+        <ngn-datatable-column name="Gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Row Height" prop="height"></ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

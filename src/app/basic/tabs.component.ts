@@ -30,7 +30,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
 
         <div [hidden]="!tab2">
           <h4>hidden Table</h4>
-          <ngx-datatable
+          <ngn-datatable
             class="material"
             [rows]="rows"
             [columnMode]="ColumnMode.force"
@@ -39,15 +39,15 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
             [rowHeight]="50"
             [scrollbarV]="true"
           >
-            <ngx-datatable-column name="Name" [width]="200"></ngx-datatable-column>
-            <ngx-datatable-column name="Gender" [width]="300"></ngx-datatable-column>
-            <ngx-datatable-column name="Age" [width]="80"></ngx-datatable-column>
-          </ngx-datatable>
+            <ngn-datatable-column name="Name" [width]="200"></ngn-datatable-column>
+            <ngn-datatable-column name="Gender" [width]="300"></ngn-datatable-column>
+            <ngn-datatable-column name="Age" [width]="80"></ngn-datatable-column>
+          </ngn-datatable>
         </div>
 
         <div *ngIf="tab3">
           <h4>ngIf Table</h4>
-          <ngx-datatable
+          <ngn-datatable
             class="material"
             [rows]="rows"
             [columnMode]="ColumnMode.force"
@@ -56,10 +56,10 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
             [rowHeight]="50"
             [scrollbarV]="true"
           >
-            <ngx-datatable-column name="Name" [width]="200"></ngx-datatable-column>
-            <ngx-datatable-column name="Gender" [width]="300"></ngx-datatable-column>
-            <ngx-datatable-column name="Age" [width]="80"></ngx-datatable-column>
-          </ngx-datatable>
+            <ngn-datatable-column name="Name" [width]="200"></ngn-datatable-column>
+            <ngn-datatable-column name="Gender" [width]="300"></ngn-datatable-column>
+            <ngn-datatable-column name="Age" [width]="80"></ngn-datatable-column>
+          </ngn-datatable>
         </div>
       </div>
     </div>

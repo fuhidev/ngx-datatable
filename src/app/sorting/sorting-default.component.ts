@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [rows]="rows"
         [columnMode]="ColumnMode.force"
@@ -26,20 +26,20 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [scrollbarV]="true"
         [sorts]="[{ prop: 'name', dir: 'desc' }]"
       >
-        <ngx-datatable-column name="Company">
-          <ng-template let-row="row" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Company">
+          <ng-template let-row="row" ngn-datatable-cell-template>
             {{ row.company }}
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Name">
-          <ng-template let-row="row" ngx-datatable-cell-template>
+        <ngn-datatable-column name="Name">
+          <ng-template let-row="row" ngn-datatable-cell-template>
             {{ row.name }}
           </ng-template>
-        </ngx-datatable-column>
+        </ngn-datatable-column>
 
-        <ngx-datatable-column name="Gender"> </ngx-datatable-column>
-      </ngx-datatable>
+        <ngn-datatable-column name="Gender"> </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

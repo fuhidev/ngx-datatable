@@ -15,7 +15,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material"
         [summaryRow]="true"
         [columns]="columns"
@@ -25,7 +25,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [summaryHeight]="55"
         [rows]="rows"
       >
-      </ngx-datatable>
+      </ngn-datatable>
       <ng-template #nameSummaryCell let-row="row" let-value="value">
         <div class="name-container">
           <div class="chip" *ngFor="let name of getNames()">

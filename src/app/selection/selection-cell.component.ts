@@ -16,7 +16,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material selection-cell"
         [rows]="rows"
         [columnMode]="ColumnMode.force"
@@ -29,7 +29,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
         (select)="onSelect($event)"
         (activate)="onActivate($event)"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

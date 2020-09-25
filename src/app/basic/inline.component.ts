@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         #mydatatable
         class="material"
         [headerHeight]="50"
@@ -26,8 +26,8 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         rowHeight="auto"
         [rows]="rows"
       >
-        <ngx-datatable-column name="Name">
-          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        <ngn-datatable-column name="Name">
+          <ng-template ngn-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span
               title="Double click to edit"
               (dblclick)="editing[rowIndex + '-name'] = true"
@@ -43,9 +43,9 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               [value]="value"
             />
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gender">
-          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Gender">
+          <ng-template ngn-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
             <span
               title="Double click to edit"
               (dblclick)="editing[rowIndex + '-gender'] = true"
@@ -63,13 +63,13 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               <option value="female">Female</option>
             </select>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Age">
-          <ng-template ngx-datatable-cell-template let-value="value">
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Age">
+          <ng-template ngn-datatable-cell-template let-value="value">
             {{ value }}
           </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `
 })

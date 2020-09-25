@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material striped"
         [rows]="rows"
         [columns]="columns"
@@ -25,7 +25,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [footerHeight]="50"
         [rowHeight]="50"
       >
-      </ngx-datatable>
+      </ngn-datatable>
     </div>
   `
 })

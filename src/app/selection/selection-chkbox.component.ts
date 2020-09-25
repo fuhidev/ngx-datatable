@@ -22,7 +22,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
         </small>
       </h3>
       <div style="float:left;width:75%">
-        <ngx-datatable
+        <ngn-datatable
           style="width: 90%"
           class="material"
           [rows]="rows"
@@ -38,7 +38,7 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
           (activate)="onActivate($event)"
           (select)="onSelect($event)"
         >
-          <ngx-datatable-column
+          <ngn-datatable-column
             [width]="30"
             [sortable]="false"
             [canAutoResize]="false"
@@ -47,11 +47,11 @@ import { ColumnMode, SelectionType } from 'projects/ng-nest-datatable/src/public
             [headerCheckboxable]="true"
             [checkboxable]="true"
           >
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Name"></ngx-datatable-column>
-          <ngx-datatable-column name="Gender"></ngx-datatable-column>
-          <ngx-datatable-column name="Company"></ngx-datatable-column>
-        </ngx-datatable>
+          </ngn-datatable-column>
+          <ngn-datatable-column name="Name"></ngn-datatable-column>
+          <ngn-datatable-column name="Gender"></ngn-datatable-column>
+          <ngn-datatable-column name="Company"></ngn-datatable-column>
+        </ngn-datatable>
       </div>
 
       <div class="selected-column">

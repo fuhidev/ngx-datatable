@@ -16,7 +16,7 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
           </a>
         </small>
       </h3>
-      <ngx-datatable
+      <ngn-datatable
         class="material fullscreen"
         style="top: 52px"
         [columnMode]="ColumnMode.force"
@@ -30,9 +30,9 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
         [treeToRelation]="'id'"
         (treeAction)="onTreeAction($event)"
       >
-        <ngx-datatable-column name="Id" [width]="80"></ngx-datatable-column>
-        <ngx-datatable-column name="Name" [isTreeColumn]="true" [width]="300" [treeLevelIndent]="20">
-          <ng-template ngx-datatable-tree-toggle let-tree="cellContext">
+        <ngn-datatable-column name="Id" [width]="80"></ngn-datatable-column>
+        <ngn-datatable-column name="Name" [isTreeColumn]="true" [width]="300" [treeLevelIndent]="20">
+          <ng-template ngn-datatable-tree-toggle let-tree="cellContext">
             <button [disabled]="tree.treeStatus === 'disabled'" (click)="tree.onTreeAction()">
               <span *ngIf="tree.treeStatus === 'loading'">
                 ...
@@ -48,12 +48,12 @@ import { ColumnMode } from 'projects/ng-nest-datatable/src/public-api';
               </span>
             </button>
           </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Gender"></ngx-datatable-column>
-        <ngx-datatable-column name="Age"></ngx-datatable-column>
-        <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
-        <ngx-datatable-column name="State" [width]="300" prop="address.state"></ngx-datatable-column>
-      </ngx-datatable>
+        </ngn-datatable-column>
+        <ngn-datatable-column name="Gender"></ngn-datatable-column>
+        <ngn-datatable-column name="Age"></ngn-datatable-column>
+        <ngn-datatable-column name="City" [width]="300" prop="address.city"></ngn-datatable-column>
+        <ngn-datatable-column name="State" [width]="300" prop="address.state"></ngn-datatable-column>
+      </ngn-datatable>
     </div>
   `,
   styles: ['.icon {height: 10px; width: 10px; }', '.disabled {opacity: 0.5; }']
