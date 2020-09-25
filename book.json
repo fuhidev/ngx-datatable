@@ -15,7 +15,7 @@
   ],
   "pluginsConfig": {
     "github": {
-      "url": "https://github.com/swimlane/ngx-datatable/"
+      "url": "https://github.com/ng-nest-datatable/"
     },
     "theme-api": {
       "theme": "dark"

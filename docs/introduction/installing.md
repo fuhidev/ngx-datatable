@@ -1,9 +1,9 @@
 # Installing
 
-You can grab the latest release from the [Releases Page](https://github.com/swimlane/ngx-datatable/releases)
-in Github or via [NPM](https://www.npmjs.com/package/@swimlane/ngx-datatable).
+You can grab the latest release from the [Releases Page](https://github.com/ng-nest-datatable/releases)
+in Github or via [NPM](https://www.npmjs.com/package/ng-nest-datatable).
 
-- `npm install @swimlane/ngx-datatable`
+- `npm install ng-nest-datatable`
 
 ### CSS
 

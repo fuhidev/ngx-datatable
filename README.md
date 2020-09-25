@@ -1,11 +1,11 @@
 # ngx-datatable
 
-[![Join the chat at https://gitter.im/swimlane/ngx-datatable](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swimlane/ngx-datatable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Code Climate](https://codeclimate.com/github/swimlane/ngx-datatable/badges/gpa.svg)](https://codeclimate.com/github/swimlane/ngx-datatable)
-[![Build Status](https://travis-ci.org/swimlane/ngx-datatable.svg?branch=master)](https://travis-ci.org/swimlane/ngx-datatable)
-[![Test Coverage](https://codeclimate.com/github/swimlane/ngx-datatable/badges/coverage.svg)](https://codeclimate.com/github/swimlane/ngx-datatable/coverage)
+[![Join the chat at https://gitter.im/ng-nest-datatable](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ng-nest-datatable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Climate](https://codeclimate.com/github/ng-nest-datatable/badges/gpa.svg)](https://codeclimate.com/github/ng-nest-datatable)
+[![Build Status](https://travis-ci.org/ng-nest-datatable.svg?branch=master)](https://travis-ci.org/ng-nest-datatable)
+[![Test Coverage](https://codeclimate.com/github/ng-nest-datatable/badges/coverage.svg)](https://codeclimate.com/github/ng-nest-datatable/coverage)
 [![npm version](https://badge.fury.io/js/%40swimlane%2Fngx-datatable.svg)](https://badge.fury.io/js/%40swimlane%2Fngx-datatable)
-[![npm downloads](https://img.shields.io/npm/dm/@swimlane/ngx-datatable.svg)](https://npmjs.org/@swimlane/ngx-datatable)
+[![npm downloads](https://img.shields.io/npm/dm/ng-nest-datatable.svg)](https://npmjs.org/ng-nest-datatable)
 
 `ngx-datatable` is an Angular component for presenting large and complex data. It has all the features you would expect from any other table but in a light package with _no external dependencies_. The table was designed to be extremely flexible and light; it doesn't make any assumptions about your data or how you: filter, sort or page it.
 
@@ -13,7 +13,7 @@ It was built for modern browsers using _TypeScript, CSS3 and HTML5_ and Angular 
 
 Check out the [documentation](https://swimlane.gitbook.io/ngx-datatable/) & [demos](http://swimlane.github.io/ngx-datatable/) for more information!
 
-See the [changelog](https://github.com/swimlane/ngx-datatable/blob/master/docs/changelog.md) for recent changes.
+See the [changelog](https://github.com/ng-nest-datatable/blob/master/docs/changelog.md) for recent changes.
 
 ## Features
 
@@ -35,10 +35,10 @@ See the [changelog](https://github.com/swimlane/ngx-datatable/blob/master/docs/c
 
 ## Installation
 
-To use ngx-datatable in your project install it via [npm](https://www.npmjs.com/package/@swimlane/ngx-datatable):
+To use ngx-datatable in your project install it via [npm](https://www.npmjs.com/package/ng-nest-datatable):
 
 ```
-npm i @swimlane/ngx-datatable --save
+npm i ng-nest-datatable --save
 ```
 
 ## Credits
