@@ -8,12 +8,15 @@ export * from './lib/components/columns/columns.module';
 export * from './lib/components/body/body.module';
 export * from './lib/components/footer/footer.module';
 export * from './lib/components/row-detail/row-detail.module';
+export * from './lib/components/datatable.module';
 
 // components
 export * from './lib/ngx-datatable.module';
 export * from './lib/components/datatable.component';
 export * from './lib/components/header/header.component';
 export * from './lib/components/header/header-cell.component';
+export * from './lib/components/header/header-bulk-content.component';
+export * from './lib/components/header/header-topbar.component';
 export * from './lib/components/body/body.component';
 export * from './lib/components/body/body-cell/body-cell.component';
 export * from './lib/components/body/body-row/body-row.component';

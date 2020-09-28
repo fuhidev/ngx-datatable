@@ -6,7 +6,7 @@ import { TableColumn } from '../../../../types/table-column.type';
   templateUrl: './cell-edit.component.html',
   styleUrls: ['./cell-edit.component.css']
 })
-export class CellEditComponent implements OnInit {
+export class CellEditComponent {
   @Input() column: TableColumn;
   private _value: any;
   @Input()
@@ -19,7 +19,4 @@ export class CellEditComponent implements OnInit {
   }
 
   @Output() valueChange = new EventEmitter();
-  constructor() {}
-
-  ngOnInit(): void {}
 }

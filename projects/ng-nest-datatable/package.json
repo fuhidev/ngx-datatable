@@ -1,7 +1,7 @@
 {
-  "name": "ng-nest-datatable",
-  "version": "17.0.0",
-  "description": "ngx-datatable is an Angular table grid component for presenting large and complex data.",
+  "name": "ngn-datatable",
+  "version": "1.0.0",
+  "description": "Angular component instead for ngx-datatable join with NestJS Crud (nest-crud-typeorm-client library).",
   "peerDependencies": {
     "@angular/common": "~9.1.0",
     "@angular/core": "~9.1.0",

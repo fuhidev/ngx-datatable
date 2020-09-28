@@ -3,8 +3,8 @@ import { DataTableBodyRowComponent } from './body-row.component';
 import { DataTableBodyCellComponent } from '../body-cell/body-cell.component';
 
 describe('DataTableBodyRowComponent', () => {
-  let fixture: ComponentFixture<DataTableBodyRowComponent>;
-  let component: DataTableBodyRowComponent;
+  let fixture: ComponentFixture<DataTableBodyRowComponent<any>>;
+  let component: DataTableBodyRowComponent<any>;
   let element: any;
 
   // provide our implementations or mocks to the dependency injector

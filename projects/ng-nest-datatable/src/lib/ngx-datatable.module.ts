@@ -5,12 +5,13 @@ import { DimensionsHelper } from './services/dimensions-helper.service';
 import { ColumnChangesService } from './services/column-changes.service';
 import { DatatableModule } from './components/datatable.module';
 import { DatatableColumnsModule } from './components/columns/columns.module';
+import { BodyGroupHeaderModule } from './components/body/body-group-header/body-group-header.module';
 
 @NgModule({
-  imports: [CommonModule, DatatableModule, DatatableColumnsModule],
+  imports: [CommonModule, DatatableModule, DatatableColumnsModule, BodyGroupHeaderModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [],
-  exports: [DatatableModule, DatatableColumnsModule]
+  exports: [DatatableModule, DatatableColumnsModule, BodyGroupHeaderModule]
 })
 export class NgxDatatableModule {
   /**

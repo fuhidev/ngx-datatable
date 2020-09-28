@@ -10,8 +10,8 @@ import { ScrollerComponent } from './scroller.component';
 import { ScrollbarHelper } from '../../services/scrollbar-helper.service';
 
 describe('DataTableBodyComponent', () => {
-  let fixture: ComponentFixture<DataTableBodyComponent>;
-  let component: DataTableBodyComponent;
+  let fixture: ComponentFixture<DataTableBodyComponent<any>>;
+  let component: DataTableBodyComponent<any>;
   let element: any;
 
   // provide our implementations or mocks to the dependency injector

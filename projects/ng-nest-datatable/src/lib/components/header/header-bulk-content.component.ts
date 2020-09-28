@@ -4,8 +4,4 @@ import { Component, OnInit } from '@angular/core';
   selector: 'datatable-bulk-content',
   template: ''
 })
-export class DaatableBulkContentComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class DaatableBulkContentComponent {}

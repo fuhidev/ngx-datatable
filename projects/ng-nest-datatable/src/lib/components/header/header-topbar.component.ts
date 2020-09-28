@@ -4,8 +4,4 @@ import { Component, OnInit } from '@angular/core';
   selector: 'datatable-topbar',
   template: '<ng-content></ng-content>'
 })
-export class DatatableTopbarComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class DatatableTopbarComponent {}

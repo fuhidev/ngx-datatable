@@ -6,8 +6,8 @@ import { TableColumn } from '../../../types/table-column.type';
 import { DataTableBodyCellComponent } from './body-cell.component';
 
 describe('DataTableBodyCellComponent', () => {
-  let fixture: ComponentFixture<DataTableBodyCellComponent>;
-  let component: DataTableBodyCellComponent;
+  let fixture: ComponentFixture<DataTableBodyCellComponent<any>>;
+  let component: DataTableBodyCellComponent<any>;
   let element;
 
   // provide our implementations or mocks to the dependency injector
