@@ -32,6 +32,9 @@
           <li>
             <a href="#row-edit" (click)="state = 'row-edit'">Chỉnh sửa</a>
           </li>
+          <li>
+            <a href="#row-edit-template" (click)="state = 'row-edit-template'">Chỉnh sửa tùy chỉnh nội dung hiển thị</a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -42,5 +45,6 @@
     <paging *ngIf="state === 'paging'"></paging>
     <row-delete *ngIf="state === 'row-delete'"></row-delete>
     <row-edit *ngIf="state === 'row-edit'"></row-edit>
+    <row-edit-template *ngIf="state === 'row-edit-template'"></row-edit-template>
   </content>
 </div>

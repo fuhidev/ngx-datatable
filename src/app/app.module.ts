@@ -10,16 +10,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BasicComponent } from './basic/basic.component';
 import { PagingComponent } from './basic/paging.component';
-import { RowDeleteComponent } from './editing/row-delete.component';
-import { RowEditComponent } from './editing/row-edit.component';
+import { EditingModule } from './editing/editing.module';
 
 @NgModule({
-  declarations: [AppComponent, BasicComponent, PagingComponent, RowDeleteComponent, RowEditComponent],
+  declarations: [AppComponent, BasicComponent, PagingComponent],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    EditingModule,
     NgxDatatableModule.forRoot({
       messages: {
         emptyMessage: 'No data to display', // Message to show when array is presented, but contains no values

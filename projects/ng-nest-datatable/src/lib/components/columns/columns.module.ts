@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DataTableColumnHeaderDirective, DataTableColumnCellDirective } from '../../../public-api';
+import { DataTableColumnCellDirective } from './column-cell.directive';
+import { DataTableColumnHeaderDirective } from './column-header.directive';
 import { DataTableColumnDirective } from './column.directive';
 import { DataTableColumnCellTreeToggle } from './tree.directive';
 
@@ -19,4 +20,4 @@ import { DataTableColumnCellTreeToggle } from './tree.directive';
     DataTableColumnCellTreeToggle
   ]
 })
-export class ColumnsModule {}
+export class DatatableColumnsModule {}

@@ -4,12 +4,13 @@ import { ScrollbarHelper } from './services/scrollbar-helper.service';
 import { DimensionsHelper } from './services/dimensions-helper.service';
 import { ColumnChangesService } from './services/column-changes.service';
 import { DatatableModule } from './components/datatable.module';
+import { DatatableColumnsModule } from './components/columns/columns.module';
 
 @NgModule({
-  imports: [CommonModule, DatatableModule],
+  imports: [CommonModule, DatatableModule, DatatableColumnsModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [],
-  exports: [DatatableModule]
+  exports: [DatatableModule, DatatableColumnsModule]
 })
 export class NgxDatatableModule {
   /**

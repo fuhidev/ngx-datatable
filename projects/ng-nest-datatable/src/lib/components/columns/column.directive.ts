@@ -1,12 +1,13 @@
-import { Directive, TemplateRef, ContentChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Directive, TemplateRef, ContentChild, Input, OnChanges, SimpleChanges, Component } from '@angular/core';
 import { DataTableColumnHeaderDirective } from './column-header.directive';
 import { DataTableColumnCellDirective } from './column-cell.directive';
 import { DataTableColumnCellTreeToggle } from './tree.directive';
 import { ColumnChangesService } from '../../services/column-changes.service';
 import { TableColumnProp } from '../../types/table-column.type';
 
-@Directive({ selector: 'ngn-datatable-column' })
+@Component({ selector: 'ngn-datatable-column', template: '' })
 export class DataTableColumnDirective implements OnChanges {
+  @Input() type: 'string' | 'boolean' | 'number';
   @Input() name: string;
   @Input() prop: TableColumnProp;
   @Input() frozenLeft: any;

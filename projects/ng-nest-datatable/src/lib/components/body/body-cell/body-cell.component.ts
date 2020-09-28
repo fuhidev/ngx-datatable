@@ -34,7 +34,7 @@ export type DatatableRow<T extends {}> = T & {
 export class DataTableBodyCellComponent<T> implements DoCheck, OnDestroy {
   @Input() displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
   @Input() isRowEdit = false;
-  @Input() quickEditRow: T;
+  @Input() quickEditRow: T = null;
 
   @Input() set group(group: any) {
     this._group = group;
@@ -215,19 +215,24 @@ export class DataTableBodyCellComponent<T> implements DoCheck, OnDestroy {
   onCheckboxChangeFn = this.onCheckboxChange.bind(this);
   activateFn = this.activate.emit.bind(this.activate);
 
-  cellContext: any = {
-    onCheckboxChangeFn: this.onCheckboxChangeFn,
-    activateFn: this.activateFn,
-    row: this.row,
-    group: this.group,
-    value: this.value,
-    column: this.column,
-    rowHeight: this.rowHeight,
-    isSelected: this.isSelected,
-    rowIndex: this.rowIndex,
-    treeStatus: this.treeStatus,
-    onTreeAction: this.onTreeAction.bind(this)
-  };
+  get cellContext() {
+    return {
+      onCheckboxChangeFn: this.onCheckboxChangeFn,
+      activateFn: this.activateFn,
+      expanded: false,
+      isEdit: this.isRowEdit,
+      rowEdit: this.quickEditRow,
+      row: this.row,
+      group: this.group,
+      value: this.value,
+      column: this.column,
+      rowHeight: this.rowHeight,
+      isSelected: this.isSelected,
+      rowIndex: this.rowIndex,
+      treeStatus: this.treeStatus,
+      onTreeAction: this.onTreeAction.bind(this)
+    };
+  }
 
   private _isSelected: boolean;
   private _sorts: any[];

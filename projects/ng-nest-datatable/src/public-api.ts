@@ -2,6 +2,13 @@
  * Public API Surface of ngx-datatable
  */
 
+// modules
+export * from './lib/components/header/header.module';
+export * from './lib/components/columns/columns.module';
+export * from './lib/components/body/body.module';
+export * from './lib/components/footer/footer.module';
+export * from './lib/components/row-detail/row-detail.module';
+
 // components
 export * from './lib/ngx-datatable.module';
 export * from './lib/components/datatable.component';
