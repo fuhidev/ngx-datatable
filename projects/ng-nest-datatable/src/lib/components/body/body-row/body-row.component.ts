@@ -27,7 +27,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'datatable-body-row',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './body-row.component.html'
+  templateUrl: './body-row.component.html',
+  styleUrls: ['./body-row.component.scss']
 })
 export class DataTableBodyRowComponent<T> implements DoCheck {
   @Input() set actions(actions: DatatableAction<T>[]) {

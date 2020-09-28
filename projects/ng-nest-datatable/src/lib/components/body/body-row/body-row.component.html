@@ -1,38 +1,45 @@
-<div
-  *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
-  class="datatable-row-{{ colGroup.type }} datatable-row-group"
-  [ngStyle]="_groupStyles[colGroup.type]"
->
-  <datatable-body-cell
-    *ngFor="let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn"
-    tabindex="-1"
-    [row]="row"
-    [group]="group"
-    [expanded]="expanded"
-    [isSelected]="isSelected"
-    [rowIndex]="rowIndex"
-    [column]="column"
-    [rowHeight]="rowHeight"
-    [displayCheck]="displayCheck"
-    [treeStatus]="treeStatus"
-    (activate)="onActivate($event, ii)"
-    (treeAction)="onTreeAction()"
-    [row]="row"
-    [column]="column"
-    [isRowEdit]="isRowEdit()"
-    [quickEditRow]="quickEditRow"
+<div>
+  <div
+    *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
+    class="datatable-row-{{ colGroup.type }} datatable-row-group"
+    [ngStyle]="_groupStyles[colGroup.type]"
   >
-  </datatable-body-cell>
+    <datatable-body-cell
+      *ngFor="let column of colGroup.columns; let ii = index; trackBy: columnTrackingFn"
+      tabindex="-1"
+      [row]="row"
+      [group]="group"
+      [expanded]="expanded"
+      [isSelected]="isSelected"
+      [rowIndex]="rowIndex"
+      [column]="column"
+      [rowHeight]="rowHeight"
+      [displayCheck]="displayCheck"
+      [treeStatus]="treeStatus"
+      (activate)="onActivate($event, ii)"
+      (treeAction)="onTreeAction()"
+      [row]="row"
+      [column]="column"
+      [isRowEdit]="isRowEdit()"
+      [quickEditRow]="quickEditRow"
+    >
+    </datatable-body-cell>
+  </div>
 </div>
 <div *ngIf="actions && actions.length" class="action-column">
   <ng-container *ngIf="isRowEdit(); then editRow; else normalRow"></ng-container>
   <ng-template #editRow>
-    <i [title]="'Lưu'" (click)="saveEdit()" class="fas fa-check-circle">Lưu</i>
-    <i [title]="'Hủy'" (click)="cancelEdit()" class="fas fa-times-circle">Hủy</i>
+    <div class="btn-action" (click)="saveEdit()">
+      <i [title]="'Lưu'" class="fas fa-check-circle">Lưu</i>
+    </div>
+    <div class="btn-action" (click)="cancelEdit()">
+      <i [title]="'Hủy'" class="fas fa-times-circle">Hủy</i>
+    </div>
   </ng-template>
   <ng-template #normalRow>
     <ng-container *ngFor="let action of actions">
       <div
+        class="btn-action"
         *ngIf="action.name !== 'expand'"
         (click)="rowClick(action, row)"
         (focus)="action.focus && action.focus(row)"
