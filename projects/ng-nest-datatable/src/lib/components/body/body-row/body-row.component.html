@@ -26,7 +26,7 @@
     </datatable-body-cell>
   </div>
 </div>
-<div *ngIf="actions && actions.length" class="action-column">
+<div *ngIf="actions && actions.length && isHover" class="action-column">
   <ng-container *ngIf="isRowEdit(); then editRow; else normalRow"></ng-container>
   <ng-template #editRow>
     <div class="btn-action" (click)="saveEdit()">

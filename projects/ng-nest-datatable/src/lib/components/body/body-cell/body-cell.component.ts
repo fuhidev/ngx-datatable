@@ -18,15 +18,12 @@ import {
 import { TableColumn } from '../../../types/table-column.type';
 import { SortDirection } from '../../../types/sort-direction.type';
 import { Keys } from '../../../utils/keys';
-import { DatatableService } from '../../../types/table-service.type';
-import { DatatableAction, EventDeleteRow, EventQuickEditRow } from '../../../types/table-row.type';
-import { Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 
 export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 
 export type DatatableRow<T extends {}> = T & {
   ___isEdit?: boolean;
+  ___isHover?: boolean;
 };
 
 @Component({

@@ -20,6 +20,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
       </h3>
       <ngn-datatable
         class="material"
+        [externalPaging]="true"
         [actions]="actions"
         [datatableService]="datatableService"
         [columns]="columns"

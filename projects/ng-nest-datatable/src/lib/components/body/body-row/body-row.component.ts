@@ -31,6 +31,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./body-row.component.scss']
 })
 export class DataTableBodyRowComponent<T> implements DoCheck {
+  get isHover() {
+    return this.row.___isHover;
+  }
+  @HostListener('mouseover') mouseover() {
+    if (this.rows.some(s => s.___isHover)) {
+      return;
+    }
+    this.row.___isHover = true;
+  }
+  @HostListener('mouseleave') mouseleave() {
+    if (this.isRowEdit()) {
+      return;
+    }
+    this.row.___isHover = false;
+  }
   @Input() set actions(actions: DatatableAction<T>[]) {
     if (actions && actions.length) {
       actions.forEach(action => {
@@ -124,7 +139,7 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
    * Trạng thái xóa
    */
   isDelete = false;
-  @Input() rows: Array<any & { isEdit: boolean }>;
+  @Input() rows: Array<DatatableRow<T>>;
   @Input() datatableService: DatatableService<T>;
   @Output() delete = new EventEmitter<EventDeleteRow<T>>();
   @Output() quickEdit = new EventEmitter<EventQuickEditRow<T>>();
@@ -155,7 +170,7 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
 
   @Input() expanded: boolean;
   @Input() rowClass: any;
-  @Input() row: any;
+  @Input() row: DatatableRow<T>;
   @Input() group: any;
   @Input() isSelected: boolean;
   @Input() rowIndex: number;
