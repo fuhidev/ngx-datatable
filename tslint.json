@@ -1,6 +1,7 @@
 {
   "extends": ["tslint-config-swimlane/base", "tslint-config-prettier"],
   "rules": {
+    "array-type": false,
     "no-implicit-dependencies": [false, "dev"],
     "no-any": false,
     "typedef": true,

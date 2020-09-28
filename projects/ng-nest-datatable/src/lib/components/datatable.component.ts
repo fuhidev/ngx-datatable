@@ -25,8 +25,8 @@ import {
 
 import { DatatableGroupHeaderDirective } from './body/body-group-header.directive';
 
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { INgxDatatableConfig } from '../ngn-datatable.module';
+import { BehaviorSubject, forkJoin, Subscription } from 'rxjs';
+import { INgxDatatableConfig } from '../ngx-datatable.module';
 import { groupRowsByParents, optionalGetterForProp } from '../utils/tree';
 import { TableColumn } from '../types/table-column.type';
 import { setColumnDefaults, translateTemplates } from '../utils/column-helper';
@@ -45,6 +45,9 @@ import { DimensionsHelper } from '../services/dimensions-helper.service';
 import { throttleable } from '../utils/throttle';
 import { forceFillColumnWidths, adjustColumnWidths } from '../utils/math';
 import { sortRows } from '../utils/sort';
+import { DatatableService } from '../types/table-service.type';
+import { DatatableAction, DatatableBulkAction, EventBulkClick, EventDeleteRow } from '../types/table-row.type';
+import { RequestQueryBuilder } from 'nest-crud-typeorm-client';
 
 @Component({
   selector: 'ngn-datatable',
@@ -56,7 +59,7 @@ import { sortRows } from '../utils/sort';
     class: 'ngn-datatable'
   }
 })
-export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
+export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
   /**
    * Template for the target marker of drag target columns.
    */
@@ -65,7 +68,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**
    * Rows that are displayed in the table.
    */
-  @Input() set rows(val: any) {
+  @Input() set rows(val: T[]) {
     this._rows = val;
 
     if (val) {
@@ -98,7 +101,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**
    * Gets the rows.
    */
-  get rows(): any {
+  get rows(): T[] {
     return this._rows;
   }
 
@@ -161,7 +164,24 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * represented as selected in the grid.
    * Default value: `[]`
    */
-  @Input() selected: any[] = [];
+  private _selected: Array<T> = [];
+  get selected() {
+    return this._selected;
+  }
+  @Input() set selected(val: Array<T>) {
+    this._selected = val || [];
+  }
+
+  /**
+   *
+   */
+  @Input() datatableService: DatatableService<T>;
+
+  @Input() actions: DatatableAction<T>[];
+
+  //#region bulk
+  @Input() bulkActions: DatatableBulkAction<T>[];
+  @Output() bulkClick = new EventEmitter<EventBulkClick<T>>();
 
   /**
    * Enable vertical scrollbars
@@ -177,7 +197,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * The row height; which is necessary
    * to calculate the height for the lazy rendering.
    */
-  @Input() rowHeight: number | 'auto' | ((row?: any) => number) = 30;
+  @Input() rowHeight: number | 'auto' | ((row?: T) => number) = 60;
 
   /**
    * Type of column width distribution formula.
@@ -590,7 +610,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * invoking functions on the body.
    */
   @ViewChild(DataTableBodyComponent)
-  bodyComponent: DataTableBodyComponent;
+  bodyComponent: DataTableBodyComponent<T>;
 
   /**
    * Reference to the header component for manually
@@ -627,13 +647,18 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   _limit: number | undefined;
   _count: number = 0;
   _offset: number = 0;
-  _rows: any[];
+  _rows: T[];
   _groupRowsBy: string;
-  _internalRows: any[];
+  _internalRows: T[];
   _internalColumns: TableColumn[];
   _columns: TableColumn[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _subscriptions: Subscription[] = [];
+
+  /**
+   * page hiện tại, chỉ sử dụng khi externalPaging=true
+   */
+  private currentPage = 1;
 
   constructor(
     @SkipSelf() private scrollbarHelper: ScrollbarHelper,
@@ -659,10 +684,120 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * properties of a directive are initialized.
    */
   ngOnInit(): void {
+    if (this.externalPaging) {
+      if (!this.limit) {
+        this.limit = 10;
+      }
+      if (!this.footerHeight) {
+        this.footerHeight = 50;
+      }
+    }
+    if (this.datatableService) {
+      this.loadData();
+    }
     // need to call this immediatly to size
     // if the table is hidden the visibility
     // listener will invoke this itself upon show
     this.recalculate();
+  }
+
+  public loadData() {
+    this.selected = [];
+    if (this.datatableService && this.datatableService.service) {
+      const builder = RequestQueryBuilder.create();
+      if (this.datatableService.builder) {
+        this.datatableService.builder(builder);
+      }
+      if (this.externalPaging) {
+        if (this.sorts.length) {
+          const sort = this.sorts[0];
+          let field = sort.prop;
+          // kiểm tra có propSort?
+          const column = this.columns.find(f => f.prop === sort.prop);
+          if (column.propSort) {
+            field = column.propSort;
+          }
+          (builder as RequestQueryBuilder).sortBy({
+            field,
+            order: (sort.dir as string).toUpperCase() as any
+          });
+        }
+        const obser = this.datatableService.service.getPagination(this.limit, this.currentPage, builder);
+        obser.subscribe(value => {
+          this.rows = value.data;
+          this.currentPage = value.page;
+          this.offset = value.page - 1;
+          this.pageSize = value.pageCount;
+          // nếu pageSize nhỏ hơn currentPage thì set lại currentPage
+          if (this.pageSize < this.currentPage) {
+            this.currentPage = this.pageSize;
+            this.loadData();
+          }
+          this.count = value.total;
+        });
+        return obser;
+      } else {
+        const obser = this.datatableService.service.getMany(builder);
+        obser.subscribe(values => {
+          this.rows = values;
+        });
+        return obser;
+      }
+    }
+  }
+
+  //#region bulk action
+  /**
+   * Giữ giá trị bulk
+   */
+  bulkActionSelected: DatatableBulkAction<T>;
+  isMulDelete = false;
+  /**
+   * Kích hoạt bulk
+   */
+  handleBulkClick() {
+    // nếu có chọn
+    if (this.bulkActionSelected) {
+      // nếu là delete thì tự kích hoạt chức năng delete
+      if (this.bulkActionSelected.name === 'delete') {
+        const { service, primaryField } = this.datatableService;
+        if (service && primaryField && this.selected && this.selected.length) {
+          this.isMulDelete = true;
+        }
+      }
+      this.bulkClick.emit({
+        action: this.bulkActionSelected
+      });
+    }
+  }
+
+  bulkDelete() {
+    // duyệt danh sách người dùng đang chọn và cập nhật lại theo thuộc tính mulEditEntiy
+    // this.toast.info('Đang xóa vui lòng đợi...', 'Thông báo');
+    forkJoin(
+      this.selected.map(item => {
+        return this.datatableService.service.delete(item[this.datatableService.primaryField] as any);
+      })
+    )
+      .pipe()
+      .subscribe(
+        success => {
+          // this.toast.success('Xóa thành công', 'Thành công');
+          this.loadData();
+          this.isMulDelete = false;
+        },
+        error => {
+          // this.toast.danger(error && error.message, 'Lỗi');
+        }
+      );
+  }
+  //#endregion
+
+  handleDeleteRow(e: EventDeleteRow<T>) {
+    // nếu chạy xong thì cập nhật lại bảng
+    if (e.type === 'after' && !e.error) {
+      this.loadData();
+    }
   }
 
   /**
@@ -769,7 +904,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * Lifecycle hook that is called when Angular dirty checks a directive.
    */
   ngDoCheck(): void {
-    if (this.rowDiffer.diff(this.rows)) {
+    if (this.rowDiffer.diff(this.rows as any)) {
       if (!this.externalSorting) {
         this.sortInternalRows();
       } else {
@@ -902,6 +1037,11 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   onFooterPage(event: any) {
     this.offset = event.page - 1;
     this.bodyComponent.updateOffsetY(this.offset);
+
+    if (this.datatableService) {
+      this.currentPage = this.offset + 1;
+      this.loadData();
+    }
 
     this.page.emit({
       count: this.count,
@@ -1062,6 +1202,10 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
 
     this.sorts = event.sorts;
 
+    if (this.datatableService) {
+      this.loadData();
+    }
+
     // this could be optimized better since it will resort
     // the rows again on the 'push' detection...
     if (this.externalSorting === false) {
@@ -1119,7 +1263,13 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * A row was selected from body
    */
   onBodySelect(event: any): void {
-    this.select.emit(event);
+    if (event.hasOwnProperty('selected')) {
+      if (this.selected) {
+        this.selected.splice(0, this.selected.length);
+        this.selected.push(...event.selected);
+      }
+      this.select.emit(event);
+    }
   }
 
   /**

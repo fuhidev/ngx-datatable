@@ -15,6 +15,8 @@ import { SelectionType } from '../../types/selection.type';
 import { columnsByPin, columnGroupWidths } from '../../utils/column';
 import { RowHeightCache } from '../../utils/row-height-cache';
 import { translateXY } from '../../utils/translate';
+import { DatatableService } from '../../types/table-service.type';
+import { DatatableAction } from '../../types/table-row.type';
 
 @Component({
   selector: 'datatable-body',
@@ -78,6 +80,10 @@ import { translateXY } from '../../utils/translate';
             [treeStatus]="group && group.treeStatus"
             (treeAction)="onTreeAction(group)"
             (activate)="selector.onActivate($event, indexes.first + i)"
+            [datatableService]="datatableService"
+            [rows]="rows"
+            [actions]="actions"
+            (deleteRow)="deleteRow.emit($event)"
           >
           </datatable-body-row>
           <ng-template #groupedRowsTemplate>
@@ -118,7 +124,10 @@ import { translateXY } from '../../utils/translate';
     class: 'datatable-body'
   }
 })
-export class DataTableBodyComponent implements OnInit, OnDestroy {
+export class DataTableBodyComponent<T> implements OnInit, OnDestroy {
+  @Input() datatableService: DatatableService<T>;
+  @Input() actions: DatatableAction<T>[];
+  @Output() deleteRow = new EventEmitter();
   @Input() scrollbarV: boolean;
   @Input() scrollbarH: boolean;
   @Input() loadingIndicator: boolean;

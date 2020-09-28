@@ -19,6 +19,8 @@ import { columnsByPin, columnGroupWidths, columnsByPinArr } from '../../utils/co
 import { Keys } from '../../utils/keys';
 import { ScrollbarHelper } from '../../services/scrollbar-helper.service';
 import { translateXY } from '../../utils/translate';
+import { DatatableService } from '../../types/table-service.type';
+import { DatatableAction } from '../../types/table-row.type';
 
 @Component({
   selector: 'datatable-body-row',
@@ -43,12 +45,23 @@ import { translateXY } from '../../utils/translate';
         [treeStatus]="treeStatus"
         (activate)="onActivate($event, ii)"
         (treeAction)="onTreeAction()"
+        [rows]="rows"
+        [datatableService]="datatableService"
+        [row]="row"
+        [column]="column"
+        [columnIndex]="ii"
+        [actions]="actions"
+        (delete)="deleteRow.emit($event)"
       >
       </datatable-body-cell>
     </div>
   `
 })
-export class DataTableBodyRowComponent implements DoCheck {
+export class DataTableBodyRowComponent<T> implements DoCheck {
+  @Input() rows: Array<any & { isEdit: boolean }>;
+  @Input() datatableService: DatatableService<T>;
+  @Input() actions: DatatableAction<T>[];
+  @Output() deleteRow = new EventEmitter();
   @Input() set columns(val: any[]) {
     this._columns = val;
     this.recalculateColumns(val);

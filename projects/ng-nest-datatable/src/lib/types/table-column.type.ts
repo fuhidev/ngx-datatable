@@ -216,4 +216,19 @@ export interface TableColumn {
    * @memberOf TableColumn
    */
   summaryTemplate?: any;
+
+  /**
+   * kiểu dữ liệu
+   */
+  type?: 'string' | 'boolean' | 'number' | 'date'; // set when edit and insert
+  /**
+   * thuộc tính sắp xếp
+   */
+  propSort?: string;
+
+  /**
+   * thuộc tính hiển thị
+   * @default prop
+   */
+  display?: string; // default = prop
 }

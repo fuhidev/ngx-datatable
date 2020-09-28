@@ -49,6 +49,8 @@ export * from './lib/types/click.type';
 export * from './lib/types/table-column.type';
 export * from './lib/types/sort-prop-dir.type';
 export * from './lib/types/contextmenu.type';
+export * from './lib/types/table-row.type';
+export * from './lib/types/table-service.type';
 
 // utils
 export * from './lib/utils/id';

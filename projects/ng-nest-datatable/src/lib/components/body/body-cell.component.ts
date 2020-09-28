@@ -18,8 +18,16 @@ import {
 import { TableColumn } from '../../types/table-column.type';
 import { SortDirection } from '../../types/sort-direction.type';
 import { Keys } from '../../utils/keys';
+import { DatatableService } from '../../types/table-service.type';
+import { DatatableAction, EventDeleteRow, EventQuickEditRow } from '../../types/table-row.type';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
+
+export type DatatableRow<T extends {}> = T & {
+  ___isEdit?: boolean;
+};
 
 @Component({
   selector: 'datatable-body-cell',
@@ -53,7 +61,17 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         </ng-template>
       </ng-container>
 
-      <span *ngIf="!column.cellTemplate" [title]="sanitizedValue" [innerHTML]="value"> </span>
+      <ng-container *ngIf="!column.cellTemplate">
+        <ng-container *ngIf="isRowEdit(row); then editRow; else normalRow"> </ng-container>
+        <ng-template #normalRow>
+          <ng-container *ngIf="column.type !== 'date'; else typeDate">
+            <span [innerHTML]="value" [title]="sanitizedValue"></span>
+          </ng-container>
+          <ng-template #typeDate>
+            {{ value | date: 'dd/M/yy hh:mm:ss' }}
+          </ng-template>
+        </ng-template>
+      </ng-container>
       <ng-template
         #cellTemplate
         *ngIf="column.cellTemplate"
@@ -61,10 +79,30 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
         [ngTemplateOutletContext]="cellContext"
       >
       </ng-template>
+      <ng-template #editRow>
+        <datatable-row-edit [column]="column" [(value)]="quickEditRow[column.prop]"></datatable-row-edit>
+      </ng-template>
+      <div *ngIf="actions && actions.length && columnIndex === 0" class="action-column">
+        <ng-container *ngIf="isRowEdit(row); then editRow; else normalRow"></ng-container>
+        <ng-template #editRow>
+          <i [title]="'Lưu'" (click)="saveEdit()" class="fas fa-check-circle">Lưu</i>
+          <i [title]="'Hủy'" (click)="cancelEdit()" class="fas fa-times-circle">Hủy</i>
+        </ng-template>
+        <ng-template #normalRow>
+          <ng-container *ngFor="let action of actions">
+            <div
+              *ngIf="action.name !== 'expand'"
+              (click)="rowClick(action, row)"
+              (focus)="action.focus && action.focus(row)"
+              [innerHTML]="action.icon"
+            ></div>
+          </ng-container>
+        </ng-template>
+      </div>
     </div>
   `
 })
-export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
+export class DataTableBodyCellComponent<T> implements DoCheck, OnDestroy {
   @Input() displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
 
   @Input() set group(group: any) {
@@ -161,7 +199,11 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     this.checkValueUpdates();
     this.cd.markForCheck();
   }
-
+  @Input() rows: Array<DatatableRow<T>>;
+  @Input() datatableService: DatatableService<T>;
+  @Output() delete = new EventEmitter<EventDeleteRow<T>>();
+  @Output() quickEdit = new EventEmitter<EventQuickEditRow<T>>();
+  @Input() columnIndex: number;
   get treeStatus(): TreeStatus {
     return this._treeStatus;
   }
@@ -241,7 +283,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   }
 
   sanitizedValue: any;
-  value: any;
+  value: any = null;
   sortDir: SortDirection;
   isFocused = false;
   onCheckboxChangeFn = this.onCheckboxChange.bind(this);
@@ -271,6 +313,101 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   private _expanded: boolean;
   private _element: any;
   private _treeStatus: TreeStatus;
+
+  @Input() set actions(actions: DatatableAction<T>[]) {
+    if (this.columnIndex !== 0) return;
+    if (actions && actions.length) {
+      actions.forEach(action => {
+        if (action.name === 'quick-edit') {
+          if (!action.icon) {
+            action.icon = '<i class="fas fa-pen"></i>';
+          }
+          if (!action.tooltip) {
+            action.tooltip = 'Chỉnh sửa nhanh';
+          }
+        }
+        if (action.name === 'edit') {
+          if (!action.icon) {
+            action.icon = '<i class="fas fa-edit"></i>';
+          }
+          if (!action.tooltip) {
+            action.tooltip = 'Chỉnh sửa';
+          }
+        } else if (action.name === 'delete') {
+          if (!action.icon) {
+            action.icon = '<i class="fas fa-trash-alt"></i>';
+          }
+          if (!action.tooltip) {
+            action.tooltip = 'Xóa';
+          }
+        } else if (action.name === 'view') {
+          if (!action.icon) {
+            action.icon = '<i class="fas fa-eye"></i>';
+          }
+          if (!action.tooltip) {
+            action.tooltip = 'Xem';
+          }
+        } else if (action.name === 'menu' && !action.icon) {
+          action.icon = '<i class="fas fa-ellipsis-v"></i>';
+        } else if (action.name === 'circle' && !action.icon) {
+          action.icon = '<i class="far fa-dot-circle"></i>';
+        }
+      });
+      // chỉ hiển thị 3 action
+      // các action còn sẽ được hiển thị trong phần mở rộng
+      // if (actions.length > 5) {
+      //   this._lstExpandAction = actions.slice(4, actions.length);
+      //   this._actions = [
+      //     actions[0],
+      //     actions[1],
+      //     actions[2],
+      //     actions[3],
+      //     { name: 'expand', icon: '<i class="fas fa-ellipsis-v"></i>', tooltip: 'Khác' }
+      //   ];
+      // } else {
+      this._actions = actions;
+      // }
+    }
+  }
+  get actions() {
+    return this._actions;
+  }
+  /**
+   * Danh sách thao tác
+   */
+  private _actions: DatatableAction<T>[] = [];
+  /**
+   * Thao tác mở rộng
+   */
+  _lstExpandAction: DatatableAction<T>[] = [];
+
+  /**
+   * Giữ giá trị khi người dùng nhấn action
+   */
+  private actionRow: any | null = null;
+
+  /**
+   * Lưu giá trị edit
+   */
+  private tempQuickEditRow: DatatableRow<T>;
+  get quickEditRow() {
+    return this.rows.find(f => f.___isEdit);
+  }
+  set quickEditRow(row: DatatableRow<T>) {
+    if (this.quickEditRow) {
+      this.quickEditRow.___isEdit = false;
+    }
+    // this.tempQuickEditRow = cloneDeep(row);
+    this.tempQuickEditRow = { ...row };
+    if (row) {
+      row.___isEdit = true;
+    }
+  }
+  isLoadingQuickEditRow = false;
+  /**
+   * Trạng thái xóa
+   */
+  isDelete = false;
 
   constructor(element: ElementRef, private cd: ChangeDetectorRef) {
     this._element = element.nativeElement;
@@ -420,4 +557,103 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     const levelIndent = column.treeLevelIndent != null ? column.treeLevelIndent : 50;
     return column.isTreeColumn ? row.level * levelIndent : 0;
   }
+
+  rowClick(action: DatatableAction<T>, row: DatatableRow<T>) {
+    this.actionRow = row;
+    if (action.name === 'delete') {
+      this.isDelete = true;
+    } else if (action.name === 'quick-edit') {
+      // nếu là chỉnh sửa nhanh
+      this.quickEditRow = row;
+    } else if (action.link) {
+      // this.router.navigate([action.link]);
+    }
+    action.click && action.click(row);
+  }
+
+  async deleteRow() {
+    this.delete.emit({ type: 'before', row: this.actionRow });
+    if (
+      this.actionRow && // nếu có dữ liệu row
+      this.datatableService &&
+      this.datatableService.service &&
+      this.datatableService.primaryField // nếu có khóa chính
+    ) {
+      // lấy dữ liệu dựa vào khóa chính
+      const id = this.actionRow[this.datatableService.primaryField];
+      // nếu có dữ liệu
+      try {
+        if (id !== null && id !== undefined) {
+          await this.datatableService.service.delete(id).toPromise();
+          this.actionRow = null;
+          // this.toastrService.show(`Xóa thành công!`, `Thông Báo:`);
+          this.isDelete = false;
+          this.delete.emit({ type: 'after', row: this.actionRow });
+        } else {
+          throw new Error('Không xác định được khóa chính');
+        }
+      } catch (error) {
+        this.quickEdit.emit({ type: 'after', error, row: this.actionRow });
+        this.delete.emit({ type: 'after', error, row: this.actionRow });
+        // this.toastrService.danger(error);
+      }
+    }
+  }
+
+  getRowPrimaryValue(row: DatatableRow<T>) {
+    return row[this.datatableService.primaryField];
+  }
+
+  //#region Chỉnh sửa
+  private subcriberEdit: Subscription;
+  isRowEdit(row?: DatatableRow<T>) {
+    return Boolean(row && row.___isEdit);
+  }
+
+  async saveEdit() {
+    // nếu đang save thì bỏ qua
+    if (this.isLoadingQuickEditRow) {
+      return;
+    }
+    this.quickEdit.emit({ type: 'before', row: this.actionRow });
+    this.isLoadingQuickEditRow = true;
+    const key = this.getRowPrimaryValue(this.quickEditRow);
+    this.subcriberEdit = this.datatableService.service
+      .patch(key as any, this.quickEditRow)
+      .pipe(
+        finalize(() => {
+          this.isLoadingQuickEditRow = false;
+          delete this.subcriberEdit;
+        })
+      )
+      .subscribe(
+        result => {
+          if (result) {
+            // deep copy
+            const oldRow = this.rows.find(f => this.getRowPrimaryValue(f) === key);
+            if (oldRow) {
+              Object.assign(oldRow, result);
+            }
+
+            this.quickEditRow = null;
+            this.quickEdit.emit({ type: 'after', row: this.actionRow });
+            // this.toastrService.success('Cập nhật thành công', 'Thành công');
+          }
+        },
+        error => {
+          this.quickEdit.emit({ type: 'after', error, row: this.actionRow });
+          // this.toastrService.danger(error && error.messge, 'Lỗi');
+        }
+      );
+  }
+
+  cancelEdit() {
+    // hủy cập nhật dữ liệu
+    this.subcriberEdit && this.subcriberEdit.unsubscribe();
+    delete this.subcriberEdit;
+    Object.assign(this.quickEditRow, this.tempQuickEditRow);
+    this.quickEditRow = null;
+  }
+
+  //#endregion
 }

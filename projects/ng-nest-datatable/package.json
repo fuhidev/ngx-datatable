@@ -6,6 +6,7 @@
     "@angular/common": "~9.1.0",
     "@angular/core": "~9.1.0",
     "@angular/platform-browser": "~9.1.0",
+    "nest-crud-typeorm-client": "0.2.1",
     "rxjs": "~6.5.5"
   },
   "repository": {
