@@ -3,10 +3,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ColumnChangesService } from '../services/column-changes.service';
-import { NgxDatatableModule } from '../ngn-datatable.module';
+import { NgxDatatableModule } from '../ngx-datatable.module';
 import { DatatableComponent } from './datatable.component';
-import { DataTableBodyRowComponent } from './body/body-row.component';
-import { DataTableBodyCellComponent } from './body/body-cell.component';
+import { DataTableBodyRowComponent } from './body/body-row/body-row.component';
+import { DataTableBodyCellComponent } from './body/body-cell/body-cell.component';
 
 let fixture: ComponentFixture<any>;
 let component: any;

@@ -48,7 +48,7 @@ export class DataTableRowWrapperComponent implements DoCheck {
   @Input() groupHeader: any;
   @Input() offsetX: number;
   @Input() detailRowHeight: any;
-  @Input() row: any;
+  @Input() row: any = null;
   @Input() groupedRows: any;
   @Output() rowContextmenu = new EventEmitter<{ event: MouseEvent; row: any }>(false);
 

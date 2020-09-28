@@ -9,6 +9,24 @@
     display: none !important;
   }
 
+  .action-column {
+    position: absolute;
+    bottom: 0;
+    left: 60px;
+
+    i {
+      margin-right: 15px;
+      color: #8e8e8e;
+      font-size: 17px;
+      cursor: pointer;
+      margin: 0 6px;
+    }
+
+    i:hover {
+      color: red;
+    }
+  }
+
   *,
   *:before,
   *:after {
@@ -102,26 +120,6 @@
     -ms-flex-flow: row;
     -o-flex-flow: row;
     flex-flow: row;
-  }
-
-  .datatable-body-cell {
-    .action-column {
-      position: absolute;
-      bottom: 0;
-      left: 60;
-
-      i {
-        margin-right: 15px;
-        color: #8e8e8e;
-        font-size: 17px;
-        cursor: pointer;
-        margin: 0 6px;
-      }
-
-      i:hover {
-        color: red;
-      }
-    }
   }
 
   .datatable-body-cell,
@@ -263,7 +261,12 @@
 
     .datatable-body-row {
       outline: none;
-
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: column;
       > div {
         display: -webkit-box;
         display: -moz-box;

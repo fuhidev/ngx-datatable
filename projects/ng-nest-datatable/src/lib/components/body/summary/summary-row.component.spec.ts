@@ -2,8 +2,8 @@ import { async, TestBed, ComponentFixture } from '@angular/core/testing';
 import { DebugElement, PipeTransform } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { DataTableBodyRowComponent } from '../body-row.component';
-import { DataTableBodyCellComponent } from '../body-cell.component';
+import { DataTableBodyRowComponent } from '../body-row/body-row.component';
+import { DataTableBodyCellComponent } from '../body-cell/body-cell.component';
 import { DataTableSummaryRowComponent, ISummaryColumn } from './summary-row.component';
 import { ScrollbarHelper } from '../../../services/scrollbar-helper.service';
 import { setColumnDefaults } from '../../../utils/column-helper';

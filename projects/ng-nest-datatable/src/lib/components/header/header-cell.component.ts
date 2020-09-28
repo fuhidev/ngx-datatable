@@ -155,7 +155,7 @@ export class DataTableHeaderCellComponent {
 
   sortFn = this.onSort.bind(this);
   sortClass: string;
-  sortDir: SortDirection;
+  sortDir: SortDirection = SortDirection.asc;
   selectFn = this.select.emit.bind(this.select);
 
   cellContext: any = {

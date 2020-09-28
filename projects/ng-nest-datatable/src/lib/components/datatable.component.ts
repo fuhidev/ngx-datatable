@@ -23,8 +23,6 @@ import {
   Inject
 } from '@angular/core';
 
-import { DatatableGroupHeaderDirective } from './body/body-group-header.directive';
-
 import { BehaviorSubject, forkJoin, Subscription } from 'rxjs';
 import { INgxDatatableConfig } from '../ngx-datatable.module';
 import { groupRowsByParents, optionalGetterForProp } from '../utils/tree';
@@ -48,6 +46,7 @@ import { sortRows } from '../utils/sort';
 import { DatatableService } from '../types/table-service.type';
 import { DatatableAction, DatatableBulkAction, EventBulkClick, EventDeleteRow } from '../types/table-row.type';
 import { RequestQueryBuilder } from 'nest-crud-typeorm-client';
+import { DatatableGroupHeaderDirective } from './body/body-group-header/body-group-header.directive';
 
 @Component({
   selector: 'ngn-datatable',

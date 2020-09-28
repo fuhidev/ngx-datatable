@@ -27,19 +27,7 @@ function noopSumFunc(cells: any[]): void {
 
 @Component({
   selector: 'datatable-summary-row',
-  template: `
-    <datatable-body-row
-      *ngIf="summaryRow && _internalColumns"
-      tabindex="-1"
-      [innerWidth]="innerWidth"
-      [offsetX]="offsetX"
-      [columns]="_internalColumns"
-      [rowHeight]="rowHeight"
-      [row]="summaryRow"
-      [rowIndex]="-1"
-    >
-    </datatable-body-row>
-  `,
+  templateUrl: './summary-row.component.html',
   host: {
     class: 'datatable-summary-row'
   }

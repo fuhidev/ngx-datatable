@@ -2,43 +2,7 @@ import { Component, Output, EventEmitter, ChangeDetectionStrategy, Input } from 
 import { DatatableFooterDirective } from './footer.directive';
 @Component({
   selector: 'datatable-footer',
-  template: `
-    <div
-      class="datatable-footer-inner"
-      [ngClass]="{ 'selected-count': selectedMessage }"
-      [style.height.px]="footerHeight"
-    >
-      <ng-template
-        *ngIf="footerTemplate"
-        [ngTemplateOutlet]="footerTemplate.template"
-        [ngTemplateOutletContext]="{
-          rowCount: rowCount,
-          pageSize: pageSize,
-          selectedCount: selectedCount,
-          curPage: curPage,
-          offset: offset
-        }"
-      >
-      </ng-template>
-      <div class="page-count" *ngIf="!footerTemplate">
-        <span *ngIf="selectedMessage"> {{ selectedCount?.toLocaleString() }} {{ selectedMessage }} / </span>
-        {{ rowCount?.toLocaleString() }} {{ totalMessage }}
-      </div>
-      <datatable-pager
-        *ngIf="!footerTemplate"
-        [pagerLeftArrowIcon]="pagerLeftArrowIcon"
-        [pagerRightArrowIcon]="pagerRightArrowIcon"
-        [pagerPreviousIcon]="pagerPreviousIcon"
-        [pagerNextIcon]="pagerNextIcon"
-        [page]="curPage"
-        [size]="pageSize"
-        [count]="rowCount"
-        [hidden]="!isVisible"
-        (change)="page.emit($event)"
-      >
-      </datatable-pager>
-    </div>
-  `,
+  templateUrl: 'footer.component.html',
   host: {
     class: 'datatable-footer'
   },
