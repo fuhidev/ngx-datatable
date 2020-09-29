@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { ColumnChangesService } from '../services/column-changes.service';
-import { NgxDatatableModule } from '../ngx-datatable.module';
+import { NgnDatatableModule } from '../ngx-datatable.module';
 import { DatatableComponent } from './datatable.component';
 import { DataTableBodyRowComponent } from './body/body-row/body-row.component';
 import { DataTableBodyCellComponent } from './body/body-cell/body-cell.component';
@@ -432,7 +432,7 @@ class TestFixtureComponentWithCustomTemplates {
 function setupTest(componentClass) {
   return TestBed.configureTestingModule({
     declarations: [componentClass],
-    imports: [NgxDatatableModule],
+    imports: [NgnDatatableModule],
     providers: [ColumnChangesService]
   })
     .compileComponents()

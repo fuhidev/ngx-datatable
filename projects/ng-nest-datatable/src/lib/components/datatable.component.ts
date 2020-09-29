@@ -143,11 +143,21 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
    */
   @Input() set columns(val: TableColumn[]) {
     if (val) {
+      if (this.selectionType === SelectionType.checkbox) {
+        val.unshift({
+          width: 60,
+          sortable: false,
+          canAutoResize: false,
+          draggable: false,
+          resizeable: false,
+          headerCheckboxable: true,
+          checkboxable: true
+        });
+      }
       this._internalColumns = [...val];
       setColumnDefaults(this._internalColumns);
       this.recalculateColumns();
     }
-
     this._columns = val;
   }
 
@@ -750,7 +760,6 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
    * Giữ giá trị bulk
    */
   bulkActionSelected: DatatableBulkAction<T>;
-  isMulDelete = false;
   /**
    * Kích hoạt bulk
    */
@@ -761,7 +770,23 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
       if (this.bulkActionSelected.name === 'delete') {
         const { service, primaryField } = this.datatableService;
         if (service && primaryField && this.selected && this.selected.length) {
-          this.isMulDelete = true;
+          if (confirm('Chắc chắn muốn xóa?')) {
+            forkJoin(
+              this.selected.map(item => {
+                return this.datatableService.service.delete(item[this.datatableService.primaryField] as any);
+              })
+            )
+              .pipe()
+              .subscribe(
+                success => {
+                  alert('Xóa thành công');
+                  this.loadData();
+                },
+                error => {
+                  alert(error && error.message);
+                }
+              );
+          }
         }
       }
       this.bulkClick.emit({
@@ -770,26 +795,6 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
     }
   }
 
-  bulkDelete() {
-    // duyệt danh sách người dùng đang chọn và cập nhật lại theo thuộc tính mulEditEntiy
-    // this.toast.info('Đang xóa vui lòng đợi...', 'Thông báo');
-    forkJoin(
-      this.selected.map(item => {
-        return this.datatableService.service.delete(item[this.datatableService.primaryField] as any);
-      })
-    )
-      .pipe()
-      .subscribe(
-        success => {
-          alert('Xóa thành công');
-          this.loadData();
-          this.isMulDelete = false;
-        },
-        error => {
-          alert(error && error.message);
-        }
-      );
-  }
   //#endregion
 
   handleDeleteRow(e: EventDeleteRow<T>) {
@@ -861,7 +866,19 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
     if (val) {
       const arr = val.toArray();
       if (arr.length) {
-        this._internalColumns = translateTemplates(arr);
+        const columns = translateTemplates(arr);
+        if (this.selectionType === SelectionType.checkbox) {
+          columns.unshift({
+            width: 60,
+            sortable: false,
+            canAutoResize: false,
+            draggable: false,
+            resizeable: false,
+            headerCheckboxable: true,
+            checkboxable: true
+          });
+        }
+        this._internalColumns = columns;
         setColumnDefaults(this._internalColumns);
         this.recalculateColumns();
         this.sortInternalRows();

@@ -13,14 +13,14 @@ import { BodyGroupHeaderModule } from './components/body/body-group-header/body-
   declarations: [],
   exports: [DatatableModule, DatatableColumnsModule, BodyGroupHeaderModule]
 })
-export class NgxDatatableModule {
+export class NgnDatatableModule {
   /**
    * Configure global configuration via INgxDatatableConfig
    * @param configuration
    */
-  static forRoot(configuration: INgxDatatableConfig): ModuleWithProviders<NgxDatatableModule> {
+  static forRoot(configuration: INgxDatatableConfig): ModuleWithProviders<NgnDatatableModule> {
     return {
-      ngModule: NgxDatatableModule,
+      ngModule: NgnDatatableModule,
       providers: [{ provide: 'configuration', useValue: configuration }]
     };
   }

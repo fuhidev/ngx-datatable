@@ -37,6 +37,14 @@
           </li>
         </ul>
       </li>
+      <li>
+        <h4>Thao tác đồng loạt</h4>
+        <ul>
+          <li>
+            <a href="#bulk-delete" (click)="state = 'bulk-delete'">Xóa đồng loạt</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
   <content>
@@ -46,5 +54,6 @@
     <row-delete *ngIf="state === 'row-delete'"></row-delete>
     <row-edit *ngIf="state === 'row-edit'"></row-edit>
     <row-edit-template *ngIf="state === 'row-edit-template'"></row-edit-template>
+    <app-bulk-delete *ngIf="state === 'bulk-delete'"></app-bulk-delete>
   </content>
 </div>

@@ -1,13 +1,15 @@
 <div class="header-layout">
   <ng-container *ngIf="bulkActions">
-    <!-- <nb-select placeholder="Thao tác" [(ngModel)]="bulkActionSelected">
-      <nb-option>Thao tác</nb-option>
-      <nb-option *ngFor="let item of bulkActions" [value]="item" (selectionChange)="item.click && item.click(item)">
-        {{item.title}}</nb-option>
+    <select class="form-control" placeholder="Thao tác" [(ngModel)]="bulkActionSelected">
+      <option>Thao tác</option>
+      <option *ngFor="let item of bulkActions" [ngValue]="item" (click)="item.click && item.click()">
+        {{ item.title }}
+      </option>
+    </select>
+    <!-- <nb-select >
+     
     </nb-select> -->
-    <button class="form-input" nbButton outline (click)="handleBulkClick()" [disabled]="!selected.length">
-      Chấp nhận
-    </button>
+    <button class="btn" nbButton outline (click)="handleBulkClick()" [disabled]="!selected.length">Chấp nhận</button>
   </ng-container>
   <ng-content select="fh-datatable-topbar"></ng-content>
 </div>
@@ -95,12 +97,3 @@
   >
   </datatable-footer>
 </div>
-
-<datatable-dialog [isOpen]="isMulDelete">
-  <h1>Xóa</h1>
-  <p>Bạn chắc chắn muốn xóa?</p>
-  <div [ngStyle]="{ display: 'flex', 'justify-content': 'between' }">
-    <button (click)="isMulDelete = false">Không</button>
-    <button (click)="bulkDelete()">Có</button>
-  </div>
-</datatable-dialog>

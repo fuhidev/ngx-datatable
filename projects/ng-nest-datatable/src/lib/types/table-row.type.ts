@@ -9,7 +9,7 @@ export interface DatatableAction<T> {
 }
 
 export interface DatatableBulkAction<T> {
-  click?: (item: T) => void;
+  click?: () => void;
   name: string;
   title?: string;
 }

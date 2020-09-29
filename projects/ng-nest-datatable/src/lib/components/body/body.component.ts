@@ -17,6 +17,7 @@ import { RowHeightCache } from '../../utils/row-height-cache';
 import { translateXY } from '../../utils/translate';
 import { DatatableService } from '../../types/table-service.type';
 import { DatatableAction } from '../../types/table-row.type';
+import { TableColumn } from '../../types/table-column.type';
 
 @Component({
   selector: 'datatable-body',
@@ -169,7 +170,7 @@ export class DataTableBodyComponent<T> implements OnInit, OnDestroy {
 
   _rows: any[];
   _bodyHeight: any;
-  _columns: any[];
+  _columns: TableColumn[];
   _rowCount: number;
   _offset: number;
   _pageSize: number;
