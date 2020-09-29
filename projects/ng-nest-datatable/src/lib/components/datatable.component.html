@@ -96,13 +96,11 @@
   </datatable-footer>
 </div>
 
-<!-- dialog xóa -->
-<!-- <fh-dialog [open]="isMulDelete">
-  <fh-dialog-header>Xóa</fh-dialog-header>
-  <fh-dialog-body>Bạn chắc chắn muốn xóa?</fh-dialog-body>
-  <fh-dialog-footer class="d-flex justify-content-between">
-    <button fullWidth nbButton ghost (click)="isMulDelete=false">Không</button>
-    <button fullWidth status="danger" nbButton (click)="bulkDelete()">Có</button>
-  </fh-dialog-footer>
-</fh-dialog> -->
-<!-- hết dialog xóa -->
+<datatable-dialog [isOpen]="isMulDelete">
+  <h1>Xóa</h1>
+  <p>Bạn chắc chắn muốn xóa?</p>
+  <div [ngStyle]="{ display: 'flex', 'justify-content': 'between' }">
+    <button (click)="isMulDelete = false">Không</button>
+    <button (click)="bulkDelete()">Có</button>
+  </div>
+</datatable-dialog>

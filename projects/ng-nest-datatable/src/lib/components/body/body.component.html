@@ -60,7 +60,7 @@
         [datatableService]="datatableService"
         [rows]="rows"
         [actions]="actions"
-        (deleteRow)="deleteRow.emit($event)"
+        (delete)="handleDeleteRow($event)"
       >
       </datatable-body-row>
       <ng-template #groupedRowsTemplate>

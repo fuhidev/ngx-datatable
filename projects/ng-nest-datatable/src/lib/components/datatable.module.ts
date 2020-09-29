@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BodyModule } from './body/body.module';
 import { DatatableComponent } from './datatable.component';
+import { DialogModule } from './dialog/dialog.module';
 import { FooterModule } from './footer/footer.module';
 import { HeaderModule } from './header/header.module';
 
 @NgModule({
-  imports: [CommonModule, HeaderModule, BodyModule, FooterModule],
+  imports: [CommonModule, HeaderModule, BodyModule, FooterModule, DialogModule],
   declarations: [DatatableComponent],
   exports: [DatatableComponent]
 })

@@ -32,7 +32,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
         <ngn-datatable-column name="Tên" prop="tenTinhTP" type="string">
           <ng-template ngn-datatable-cell-template let-isEdit="isEdit" let-value="value" let-rowEdit="rowEdit">
             <span *ngIf="!isEdit">{{ value }}</span>
-            <input *ngIf="isEdit" [value]="rowEdit.tenTinhTP" (change)="rowEdit.tenTinhTP = $event.target.value" />
+            <input *ngIf="isEdit" [(ngModel)]="rowEdit.tenTinhTP" />
           </ng-template>
         </ngn-datatable-column>
       </ngn-datatable>

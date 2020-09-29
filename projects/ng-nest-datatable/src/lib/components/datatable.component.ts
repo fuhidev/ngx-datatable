@@ -781,12 +781,12 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
       .pipe()
       .subscribe(
         success => {
-          // this.toast.success('Xóa thành công', 'Thành công');
+          alert('Xóa thành công');
           this.loadData();
           this.isMulDelete = false;
         },
         error => {
-          // this.toast.danger(error && error.message, 'Lỗi');
+          alert(error && error.message);
         }
       );
   }

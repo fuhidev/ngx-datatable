@@ -135,13 +135,9 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
     }
   }
   isLoadingQuickEditRow = false;
-  /**
-   * Trạng thái xóa
-   */
-  isDelete = false;
   @Input() rows: Array<DatatableRow<T>>;
   @Input() datatableService: DatatableService<T>;
-  @Output() delete = new EventEmitter<EventDeleteRow<T>>();
+  @Output() delete = new EventEmitter<T>();
   @Output() quickEdit = new EventEmitter<EventQuickEditRow<T>>();
   @Input() set columns(val: any[]) {
     this._columns = val;
@@ -349,7 +345,7 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
   rowClick(action: DatatableAction<T>, row: DatatableRow<T>) {
     this.actionRow = row;
     if (action.name === 'delete') {
-      this.isDelete = true;
+      this.delete.emit(row);
     } else if (action.name === 'quick-edit') {
       // nếu là chỉnh sửa nhanh
       this.quickEditRow = row;
@@ -357,35 +353,6 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
       // this.router.navigate([action.link]);
     }
     action.click && action.click(row);
-  }
-
-  async deleteRow() {
-    this.delete.emit({ type: 'before', row: this.actionRow });
-    if (
-      this.actionRow && // nếu có dữ liệu row
-      this.datatableService &&
-      this.datatableService.service &&
-      this.datatableService.primaryField // nếu có khóa chính
-    ) {
-      // lấy dữ liệu dựa vào khóa chính
-      const id = this.actionRow[this.datatableService.primaryField];
-      // nếu có dữ liệu
-      try {
-        if (id !== null && id !== undefined) {
-          await this.datatableService.service.delete(id).toPromise();
-          this.actionRow = null;
-          // this.toastrService.show(`Xóa thành công!`, `Thông Báo:`);
-          this.isDelete = false;
-          this.delete.emit({ type: 'after', row: this.actionRow });
-        } else {
-          throw new Error('Không xác định được khóa chính');
-        }
-      } catch (error) {
-        this.quickEdit.emit({ type: 'after', error, row: this.actionRow });
-        this.delete.emit({ type: 'after', error, row: this.actionRow });
-        // this.toastrService.danger(error);
-      }
-    }
   }
 
   getRowPrimaryValue(row: DatatableRow<T>) {
@@ -425,12 +392,12 @@ export class DataTableBodyRowComponent<T> implements DoCheck {
 
             this.quickEditRow = null;
             this.quickEdit.emit({ type: 'after', row: this.actionRow });
-            // this.toastrService.success('Cập nhật thành công', 'Thành công');
+            alert('Cập nhật thành công');
           }
         },
         error => {
           this.quickEdit.emit({ type: 'after', error, row: this.actionRow });
-          // this.toastrService.danger(error && error.messge, 'Lỗi');
+          alert(error && error.message);
         }
       );
   }

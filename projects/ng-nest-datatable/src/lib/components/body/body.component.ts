@@ -706,4 +706,32 @@ export class DataTableBodyComponent<T> implements OnInit, OnDestroy {
   onTreeAction(row: any) {
     this.treeAction.emit({ row });
   }
+
+  async handleDeleteRow(row: T) {
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.deleteRow.emit({ type: 'before', row });
+      if (
+        row && // nếu có dữ liệu row
+        this.datatableService &&
+        this.datatableService.service &&
+        this.datatableService.primaryField // nếu có khóa chính
+      ) {
+        // lấy dữ liệu dựa vào khóa chính
+        const id = row[this.datatableService.primaryField];
+        // nếu có dữ liệu
+        try {
+          if (id !== null && id !== undefined) {
+            await this.datatableService.service.delete(id as any).toPromise();
+            alert('Xóa thành công');
+            this.deleteRow.emit({ type: 'after', row });
+          } else {
+            throw new Error('Không xác định được khóa chính');
+          }
+        } catch (error) {
+          this.deleteRow.emit({ type: 'after', error, row });
+          alert(error);
+        }
+      }
+    }
+  }
 }
