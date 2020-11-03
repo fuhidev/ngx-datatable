@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { ColumnMode, DatatableAction, DatatableService, TableColumn } from 'projects/ng-nest-datatable/src/public-api';
+import {
+  ColumnMode,
+  DatatableAction,
+  DatatableService,
+  SelectionType,
+  TableColumn
+} from 'projects/ng-nest-datatable/src/public-api';
 import { TinhTPEntity } from '../interfaces/hanh-chinh.interface';
 import { TinhTPService } from '../services.ts/tinh-tp.service';
 
@@ -20,6 +26,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
       </h3>
       <ngn-datatable
         class="material"
+        [selectionType]="selectionType.single"
         [externalPaging]="true"
         [actions]="actions"
         [datatableService]="datatableService"
@@ -38,7 +45,7 @@ export class RowEditComponent {
     service: this.service,
     primaryField: 'maTinhTP'
   };
-
+  selectionType = SelectionType;
   actions: DatatableAction<TinhTPEntity>[] = [{ name: 'quick-edit' }];
 
   columns: TableColumn[] = [

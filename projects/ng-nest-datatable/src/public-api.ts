@@ -9,9 +9,9 @@ export * from './lib/components/body/body.module';
 export * from './lib/components/footer/footer.module';
 export * from './lib/components/row-detail/row-detail.module';
 export * from './lib/components/datatable.module';
-
-// components
 export * from './lib/ngx-datatable.module';
+// components
+export * from './lib/components/datatable.component';
 export * from './lib/components/datatable.component';
 export * from './lib/components/header/header.component';
 export * from './lib/components/header/header-cell.component';

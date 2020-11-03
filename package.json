@@ -5,7 +5,7 @@
     "ng": "ng",
     "build": "ng build",
     "build:lib:prod": "ng build ng-nest-datatable --prod",
-    "copy-files": "cp README.md dist/ng-nest-datatable/README.md && cp LICENSE dist/ng-nest-datatable/LICENSE && cpx \"src/assets/**/*\" \"dist/ng-nest-datatable/assets\" && cpx \"projects/ng-nest-datatable/src/lib/themes/**/*\" \"dist/ng-nest-datatable/themes\"",
+    "copy-files": "npx copy README.md dist/ng-nest-datatable/README.md && npx copy LICENSE dist/ng-nest-datatable/LICENSE && cpx \"src/assets/**/*\" \"dist/ng-nest-datatable/assets\" && cpx \"projects/ng-nest-datatable/src/lib/themes/**/*\" \"dist/ng-nest-datatable/themes\"",
     "build:css": "scss-bundle  -c ./scss-bundle.config.json && node-sass -o dist/ng-nest-datatable/themes dist/ng-nest-datatable/themes && node-sass -o dist/ng-nest-datatable dist/ng-nest-datatable",
     "test": "run-p lint test:unit",
     "test:unit": "ng test ng-nest-datatable --watch=false",
@@ -24,7 +24,7 @@
     "publish:lib": "npm publish ./dist/ng-nest-datatable",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/ng-nest-datatable/",
-    "publish": "run-s publish:lib deploy-docs",
+    "publish": "npm run package && cd ./dist/ng-nest-datatable && npm publish",
     "prepublishOnly": "echo \"This is the workspace -- you probably meant run 'npm run publish'.\" && exit 1"
   },
   "private": true,

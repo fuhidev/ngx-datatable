@@ -206,7 +206,7 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
    * The row height; which is necessary
    * to calculate the height for the lazy rendering.
    */
-  @Input() rowHeight: number | 'auto' | ((row?: T) => number) = 60;
+  @Input() rowHeight: number | 'auto' | ((row?: T) => number) = 'auto';
 
   /**
    * Type of column width distribution formula.
@@ -218,7 +218,7 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
    * The minimum header height in pixels.
    * Pass a falsey for no header
    */
-  @Input() headerHeight: number = 30;
+  @Input() headerHeight: number = 50;
 
   /**
    * The minimum footer height in pixels.

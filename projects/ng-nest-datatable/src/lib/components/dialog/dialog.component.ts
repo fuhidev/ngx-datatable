@@ -20,12 +20,6 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     // move element to bottom of page (just before </body>) so it can be displayed above everything else
     document.body.appendChild(this.element);
-
-    // close modal on background click
-    this.element.addEventListener('click', el => {
-      if (el.target.className === 'jw-modal') {
-      }
-    });
   }
 
   // remove self from modal service when component is destroyed
