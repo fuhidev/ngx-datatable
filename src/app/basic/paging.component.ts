@@ -28,12 +28,47 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
         [headerHeight]="50"
         [footerHeight]="50"
         rowHeight="auto"
+      ></ngn-datatable>
+      <ngn-datatable
+        class="material"
+        [rows]="rows"
+        [columns]="columns"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="10"
       >
       </ngn-datatable>
     </div>
   `
 })
 export class PagingComponent {
+  rows = [
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' },
+    { maTinhTP: '1', tenTinhTP: 'Đà Nẵng' }
+  ];
   datatableService: DatatableService<TinhTPEntity> = {
     service: this.service,
     primaryField: 'maTinhTP'

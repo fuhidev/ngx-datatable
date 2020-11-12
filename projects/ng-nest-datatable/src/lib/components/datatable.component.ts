@@ -27,7 +27,7 @@ import { BehaviorSubject, forkJoin, Subscription } from 'rxjs';
 import { INgxDatatableConfig } from '../ngx-datatable.module';
 import { groupRowsByParents, optionalGetterForProp } from '../utils/tree';
 import { TableColumn } from '../types/table-column.type';
-import { setColumnDefaults, translateTemplates } from '../utils/column-helper';
+import { isNullOrUndefined, setColumnDefaults, translateTemplates } from '../utils/column-helper';
 import { ColumnMode } from '../types/column-mode.type';
 import { SelectionType } from '../types/selection.type';
 import { SortType } from '../types/sort.type';
@@ -693,6 +693,9 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
    * properties of a directive are initialized.
    */
   ngOnInit(): void {
+    if (!isNullOrUndefined(this.limit) && isNullOrUndefined(this.footerHeight)) {
+      this.footerHeight = 50;
+    }
     if (this.externalPaging) {
       if (!this.limit) {
         this.limit = 10;
