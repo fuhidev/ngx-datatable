@@ -1,9 +1,9 @@
 import { Directive, HostListener, Input } from '@angular/core';
 
 import { RequestQueryBuilder } from 'nest-crud-typeorm-client';
-import { DatatableComponent } from '../components/datatable.component';
-import { KeyValue, ExcelService } from '../services/excel.service';
-import { TableColumn } from '../types/table-column.type';
+import { DatatableComponent } from '../../components/datatable.component';
+import { KeyValue, ExcelService } from '../../services/excel.service';
+import { TableColumn } from '../../types/table-column.type';
 
 @Directive({
   selector: '[exportExcel]'

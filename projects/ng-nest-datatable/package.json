@@ -1,6 +1,6 @@
 {
   "name": "ngn-datatable",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Angular component instead for ngx-datatable join with NestJS Crud (nest-crud-typeorm-client library).",
   "peerDependencies": {
     "@angular/common": "~9.1.0",

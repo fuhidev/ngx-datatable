@@ -44,7 +44,8 @@ export * from './lib/directives/long-press.directive';
 export * from './lib/directives/orderable.directive';
 export * from './lib/directives/resizeable.directive';
 export * from './lib/directives/visibility.directive';
-export * from './lib/directives/export-excel.directive';
+export * from './lib/directives/export-excel/export-excel.module';
+export * from './lib/directives/export-excel/export-excel.directive';
 
 // services
 export * from './lib/services/scrollbar-helper.service';
