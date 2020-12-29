@@ -350,13 +350,13 @@ export class DatatableComponent<T> implements OnInit, DoCheck, AfterViewInit {
   @Input() messages: any = {
     // Message to show when array is presented
     // but contains no values
-    emptyMessage: 'No data to display',
+    emptyMessage: 'Không có dữ liệu',
 
     // Footer total message
-    totalMessage: 'total',
+    totalMessage: 'tổng',
 
     // Footer selected message
-    selectedMessage: 'selected'
+    selectedMessage: 'chọn'
   };
 
   /**

@@ -44,11 +44,13 @@ export * from './lib/directives/long-press.directive';
 export * from './lib/directives/orderable.directive';
 export * from './lib/directives/resizeable.directive';
 export * from './lib/directives/visibility.directive';
+export * from './lib/directives/export-excel.directive';
 
 // services
 export * from './lib/services/scrollbar-helper.service';
 export * from './lib/services/dimensions-helper.service';
 export * from './lib/services/column-changes.service';
+export * from './lib/services/excel.service';
 
 // types
 export * from './lib/types/column-mode.type';

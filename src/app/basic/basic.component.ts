@@ -18,7 +18,9 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
           </a>
         </small>
       </h3>
+      <button exportExcel [table]="table">Xuat Excel</button>
       <ngn-datatable
+        #table
         class="material"
         [datatableService]="datatableService"
         [columns]="columns"
@@ -39,7 +41,7 @@ export class BasicComponent {
 
   columns: TableColumn[] = [
     { prop: 'maTinhTP', name: 'Mã' },
-    { name: 'TenTinhTP', prop: 'tenTinhTP' }
+    { name: 'TenTinhTP', prop: 'tenTinhTP', flexGrow: 2 }
   ];
 
   ColumnMode = ColumnMode;

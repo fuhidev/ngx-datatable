@@ -12,6 +12,7 @@ import { BasicComponent } from './basic/basic.component';
 import { PagingComponent } from './basic/paging.component';
 import { EditingModule } from './editing/editing.module';
 import { BulkModule } from './bulk/bulk.module';
+import { DatatableDirectivesModule } from 'projects/ng-nest-datatable/src/lib/directives/directives.module';
 
 @NgModule({
   declarations: [AppComponent, BasicComponent, PagingComponent],
@@ -22,6 +23,7 @@ import { BulkModule } from './bulk/bulk.module';
     HttpClientModule,
     EditingModule,
     BulkModule,
+    DatatableDirectivesModule,
     NgnDatatableModule.forRoot({
       messages: {
         emptyMessage: 'No data to display', // Message to show when array is presented, but contains no values
