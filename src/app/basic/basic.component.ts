@@ -18,7 +18,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
           </a>
         </small>
       </h3>
-      <button exportExcel [table]="table">Xuat Excel</button>
+      <button exportExcel (excelClick)="alert('ss')" [table]="table">Xuat Excel</button>
       <ngn-datatable
         #table
         class="material"
@@ -34,6 +34,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
   `
 })
 export class BasicComponent {
+  alert = alert;
   datatableService: DatatableService<TinhTPEntity> = {
     service: this.service,
     primaryField: 'maTinhTP'

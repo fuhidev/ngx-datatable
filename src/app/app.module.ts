@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgnDatatableModule } from '../../projects/ng-nest-datatable/src/public-api';
+import { ExportExcelModule, NgnDatatableModule } from '../../projects/ng-nest-datatable/src/public-api';
 import { AppComponent } from './app.component';
 
 // -- Summary row
@@ -12,7 +12,6 @@ import { BasicComponent } from './basic/basic.component';
 import { PagingComponent } from './basic/paging.component';
 import { EditingModule } from './editing/editing.module';
 import { BulkModule } from './bulk/bulk.module';
-import { DatatableDirectivesModule } from 'projects/ng-nest-datatable/src/lib/directives/directives.module';
 
 @NgModule({
   declarations: [AppComponent, BasicComponent, PagingComponent],
@@ -23,7 +22,7 @@ import { DatatableDirectivesModule } from 'projects/ng-nest-datatable/src/lib/di
     HttpClientModule,
     EditingModule,
     BulkModule,
-    DatatableDirectivesModule,
+    ExportExcelModule,
     NgnDatatableModule.forRoot({
       messages: {
         emptyMessage: 'No data to display', // Message to show when array is presented, but contains no values
