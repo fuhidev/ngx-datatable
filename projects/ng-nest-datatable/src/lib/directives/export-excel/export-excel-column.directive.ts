@@ -3,7 +3,7 @@ import { DataTableColumnDirective } from '../../components/columns/column.direct
 
 export interface IExcelColumn {
   merge?: number;
-  hidden: boolean;
+  hidden?: boolean;
 }
 
 @Directive({
