@@ -28,8 +28,18 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
         [footerHeight]="50"
         rowHeight="auto"
       >
-        <ngn-datatable-column [exportExcelColumn]="{ hidden: false }" prop="maTinhTP" name="Mã"></ngn-datatable-column>
-        <ngn-datatable-column [exportExcelColumn]="{ merge: 3 }" prop="tenTinhTP" name="Tên"></ngn-datatable-column>
+        <ngn-datatable-column
+          [exportExcelColumn]="{ hidden: false }"
+          [flexGrow]="2"
+          prop="maTinhTP"
+          name="Mã"
+        ></ngn-datatable-column>
+        <ngn-datatable-column
+          [exportExcelColumn]="{ merge: 1 }"
+          [flexGrow]="2"
+          prop="tenTinhTP"
+          name="Tên"
+        ></ngn-datatable-column>
       </ngn-datatable>
     </div>
   `

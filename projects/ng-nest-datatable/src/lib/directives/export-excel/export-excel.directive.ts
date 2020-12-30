@@ -48,6 +48,9 @@ export class ExportExcelDirective {
             }
             merge = excelColumn.merge;
           }
+          if (!merge) {
+            merge = column.flexGrow;
+          }
           columns.push({ key: column.prop, value: column.name, merge } as KeyValue);
         });
         const eValues: KeyValue[][] = [];
