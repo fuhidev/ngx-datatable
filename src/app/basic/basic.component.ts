@@ -18,17 +18,18 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
           </a>
         </small>
       </h3>
-      <button exportExcel (excelClick)="alert('ss')" [table]="table">Xuat Excel</button>
+      <button exportExcel [table]="table">Xuat Excel</button>
       <ngn-datatable
         #table
         class="material"
         [datatableService]="datatableService"
-        [columns]="columns"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
         rowHeight="auto"
       >
+        <ngn-datatable-column [exportExcelColumn]="{ hidden: false }" prop="maTinhTP" name="Mã"></ngn-datatable-column>
+        <ngn-datatable-column [exportExcelColumn]="{ merge: 3 }" prop="tenTinhTP" name="Tên"></ngn-datatable-column>
       </ngn-datatable>
     </div>
   `
@@ -39,11 +40,6 @@ export class BasicComponent {
     service: this.service,
     primaryField: 'maTinhTP'
   };
-
-  columns: TableColumn[] = [
-    { prop: 'maTinhTP', name: 'Mã' },
-    { name: 'TenTinhTP', prop: 'tenTinhTP', flexGrow: 2 }
-  ];
 
   ColumnMode = ColumnMode;
 

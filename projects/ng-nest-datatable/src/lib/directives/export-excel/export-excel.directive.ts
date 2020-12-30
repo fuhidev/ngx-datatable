@@ -1,9 +1,10 @@
-import { Directive, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, HostListener, Input, Output, EventEmitter, ViewChildren } from '@angular/core';
 
 import { RequestQueryBuilder } from 'nest-crud-typeorm-client';
 import { DatatableComponent } from '../../components/datatable.component';
 import { KeyValue, ExcelService } from '../../services/excel.service';
 import { TableColumn } from '../../types/table-column.type';
+import { ExportExcelColumnDirective, IExcelColumn } from './export-excel-column.directive';
 
 @Directive({
   selector: '[exportExcel]'
@@ -16,9 +17,10 @@ export class ExportExcelDirective {
   @Output() excelSuccess = new EventEmitter();
   @Output() excelError = new EventEmitter();
   @Output() excelFinally = new EventEmitter();
+  @ViewChildren(ExportExcelColumnDirective) t;
   constructor(private service: ExcelService) {}
 
-  @HostListener('click')
+  @HostListener('click', ['$event'])
   async handleClick(e) {
     this.excelClick.emit(e);
     try {
@@ -35,9 +37,19 @@ export class ExportExcelDirective {
             res.data.forEach(v => values.push(v));
           }
         }
-        const columns: KeyValue[] = this.table._internalColumns.map(
-          column => ({ key: column.prop, value: column.name, merge: column.flexGrow } as KeyValue)
-        );
+        const columns: KeyValue[] = [];
+        this.table._internalColumns.forEach(column => {
+          //   const excelColumn:ExportExcelColumnDirective =  (column as any).__ngContext__.find(f=> f instanceof ExportExcelColumnDirective)
+          let merge: number;
+          const excelColumn: IExcelColumn = (column as any).excel;
+          if (excelColumn) {
+            if (excelColumn.hidden) {
+              return;
+            }
+            merge = excelColumn.merge;
+          }
+          columns.push({ key: column.prop, value: column.name, merge } as KeyValue);
+        });
         const eValues: KeyValue[][] = [];
         values.forEach(cValue => {
           const eValue: KeyValue[] = [];

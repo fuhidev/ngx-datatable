@@ -46,6 +46,7 @@ export * from './lib/directives/resizeable.directive';
 export * from './lib/directives/visibility.directive';
 export * from './lib/directives/export-excel/export-excel.module';
 export * from './lib/directives/export-excel/export-excel.directive';
+export * from './lib/directives/export-excel/export-excel-column.directive';
 
 // services
 export * from './lib/services/scrollbar-helper.service';
