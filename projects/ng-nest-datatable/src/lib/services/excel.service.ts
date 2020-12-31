@@ -32,7 +32,7 @@ export class ExcelService {
       xhr.responseType = 'arraybuffer';
       xhr.onload = function () {
         if (this.status !== 200) {
-          resolve(false);
+          reject(false);
         } else if (this.status === 200) {
           var filename = '';
           var disposition = xhr.getResponseHeader('Content-Disposition');
@@ -70,8 +70,8 @@ export class ExcelService {
             } else {
               (window as any).location = downloadUrl;
             }
-            resolve(true);
           }
+          resolve(true);
         }
       };
       xhr.send(JSON.stringify({ columns, values, chart, contents }));

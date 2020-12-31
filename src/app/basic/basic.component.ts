@@ -35,7 +35,8 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
           name="Mã"
         ></ngn-datatable-column>
         <ngn-datatable-column
-          [exportExcelColumn]="{ merge: 1 }"
+          [exportExcelColumn]="{ merge: 2 }"
+          [excelRenderCell]="renderCell('hieu dep gai')"
           [flexGrow]="2"
           prop="tenTinhTP"
           name="Tên"
@@ -54,4 +55,10 @@ export class BasicComponent {
   ColumnMode = ColumnMode;
 
   constructor(private service: TinhTPService) {}
+
+  renderCell(name: string) {
+    return (column: TableColumn, value) => {
+      return value + ' ' + name;
+    };
+  }
 }

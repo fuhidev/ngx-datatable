@@ -37,11 +37,37 @@ export class ExportExcelDirective {
             res.data.forEach(v => values.push(v));
           }
         }
-        const columns: KeyValue[] = [];
+        const columns: Array<TableColumn> = [];
         this.table._internalColumns.forEach(column => {
-          //   const excelColumn:ExportExcelColumnDirective =  (column as any).__ngContext__.find(f=> f instanceof ExportExcelColumnDirective)
-          let merge: number;
           const excelColumn: IExcelColumn = (column as any).excel;
+          if (excelColumn) {
+            if (excelColumn.hidden) {
+              return;
+            }
+          }
+          columns.push(column);
+        });
+        const eValues: KeyValue[][] = [];
+        values.forEach(cValue => {
+          const eValue: KeyValue[] = [];
+
+          columns.forEach(column => {
+            const excelColumn: IExcelColumn = (column as any).excel;
+            let v = this.get(cValue, column.prop, '');
+            let text = v;
+            if (excelColumn && excelColumn.renderCell) {
+              text = excelColumn.renderCell(column, v);
+            } else if (this.renderCell) {
+              const re = this.renderCell(column.prop as string, v);
+              text = re.text;
+            }
+            eValue.push({ key: column.prop as string, value: text });
+          });
+          eValues.push(eValue);
+        });
+        const excelColumns = columns.map(column => {
+          const excelColumn: IExcelColumn = (column as any).excel;
+          let merge: number;
           if (excelColumn) {
             if (excelColumn.hidden) {
               return;
@@ -51,24 +77,9 @@ export class ExportExcelDirective {
           if (!merge) {
             merge = column.flexGrow;
           }
-          columns.push({ key: column.prop, value: column.name, merge } as KeyValue);
+          return { key: column.prop, value: column.name, merge } as KeyValue;
         });
-        const eValues: KeyValue[][] = [];
-        values.forEach(cValue => {
-          const eValue: KeyValue[] = [];
-          columns.forEach(column => {
-            let v = this.get(cValue, column.key, '');
-            let text = v;
-            if (this.renderCell) {
-              const re = this.renderCell(column.key, v);
-              text = re.text;
-            }
-            eValue.push({ key: column.key, value: text });
-          });
-          eValues.push(eValue);
-        });
-
-        this.service.export({ columns, values: eValues });
+        this.service.export({ columns: excelColumns, values: eValues });
         this.excelSuccess.emit({ columns, values: eValues });
       }
     } catch (error) {
