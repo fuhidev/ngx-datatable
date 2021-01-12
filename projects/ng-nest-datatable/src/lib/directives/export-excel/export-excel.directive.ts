@@ -53,7 +53,13 @@ export class ExportExcelDirective {
 
           columns.forEach(column => {
             const excelColumn: IExcelColumn = (column as any).excel;
-            let v = this.get(cValue, column.prop, '');
+            let v;
+            try {
+              v = this.get(cValue, column.prop, '');
+            } catch (error) {
+              this.excelError.emit({ message: 'Lỗi get dữ liệu', detail: error });
+            }
+
             let text = v;
             if (excelColumn && excelColumn.renderCell) {
               text = excelColumn.renderCell(column, v);
