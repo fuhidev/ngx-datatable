@@ -89,7 +89,7 @@ export class ExportExcelDirective {
         }
         return { key: column.prop, value: column.name, merge } as KeyValue;
       });
-      this.service.export({ columns: excelColumns, values: eValues });
+      await this.service.export({ columns: excelColumns, values: eValues });
       this.excelSuccess.emit({ columns, values: eValues });
     } catch (error) {
       this.excelError.emit(error);
