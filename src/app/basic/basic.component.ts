@@ -22,7 +22,7 @@ import { TinhTPService } from '../services.ts/tinh-tp.service';
       <ngn-datatable
         #table
         class="material"
-        [datatableService]="datatableService"
+        [rows]="rows"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
@@ -53,7 +53,13 @@ export class BasicComponent {
   };
 
   ColumnMode = ColumnMode;
-
+  rows: Partial<TinhTPEntity>[] = [
+    { maTinhTP: '1', tenTinhTP: '2' },
+    { maTinhTP: '2', tenTinhTP: '2' },
+    { maTinhTP: '3', tenTinhTP: '2' },
+    { maTinhTP: '4', tenTinhTP: '2' },
+    { maTinhTP: '5', tenTinhTP: '2' }
+  ];
   constructor(private service: TinhTPService) {}
 
   renderCell(name: string) {
